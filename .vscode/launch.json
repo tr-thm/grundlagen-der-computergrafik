@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Active Project",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/bin/engine",
+            "args": [],
+            "cwd": "${fileDirname}",
+            "preLaunchTask": "Make",
+            "MIMode": "gdb",
+            "osx": {
+                "MIMode": "lldb"
+            }
+        }
+    ]
+}
