@@ -1,6 +1,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #define GLFW_INCLUDE_GLEXT
 #include <GLFW/glfw3.h>
+#include "texture.h"
 #include "stb_image.h"
 
 unsigned int loadTexture(const char *filename)

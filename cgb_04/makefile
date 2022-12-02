@@ -19,19 +19,19 @@ endif
 bin/engine: obj/main.o obj/graphics.o obj/scene.o obj/camera.o obj/cgmath.o | bin
 	gcc -g obj/*.o -o bin/engine $(LIB) $(LNK) $(OPT)
 
-obj/main.o: main.c | obj
+obj/main.o: main.c graphics.h | obj
 	gcc -g -c main.c -o obj/main.o $(INC) $(OPT)
 
-obj/graphics.o: graphics.c | obj
+obj/graphics.o: graphics.c graphics.h scene.h camera.h | obj
 	gcc -g -c graphics.c -o obj/graphics.o $(INC) $(OPT)
 
-obj/scene.o: scene.c | obj
+obj/scene.o: scene.c scene.h camera.h | obj
 	gcc -g -c scene.c -o obj/scene.o $(INC) $(OPT)
 
-obj/camera.o: camera.c | obj
+obj/camera.o: camera.c camera.h cgmath.h | obj
 	gcc -g -c camera.c -o obj/camera.o $(INC) $(OPT)
 
-obj/cgmath.o: cgmath.c | obj
+obj/cgmath.o: cgmath.c cgmath.h | obj
 	gcc -g -c cgmath.c -o obj/cgmath.o $(INC) $(OPT)
 
 bin:

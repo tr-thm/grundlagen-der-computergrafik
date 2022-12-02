@@ -1,6 +1,6 @@
 #include <math.h>
-#include "cgmath.h"
 #include "camera.h"
+#include "cgmath.h"
 
 static double cameraPitch = 0.0;
 static double cameraYaw = 0.0;
