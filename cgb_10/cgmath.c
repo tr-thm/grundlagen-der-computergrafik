@@ -104,7 +104,7 @@ float timePeriod(unsigned long period, unsigned long offset)
     struct timeval t;
     gettimeofday(&t, NULL);
     unsigned long seconds = ((unsigned long)(t.tv_sec) + offset) % period;
-    double miliseconds = (unsigned long)(t.tv_usec) / 1000000.0;
-    double time = seconds + miliseconds;
+    double microseconds = (unsigned long)(t.tv_usec) / 1000000.0;
+    double time = seconds + microseconds;
     return (float)(time / period);
 }
