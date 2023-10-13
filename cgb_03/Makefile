@@ -1,12 +1,12 @@
 UNAME = $(shell uname -s)
 ifeq ($(findstring NT,$(UNAME)),NT)
-	INC = -I../libraries/glfw-3.3.4.bin.WIN64/include
-	LIB = -L../libraries/glfw-3.3.4.bin.WIN64/lib-mingw-w64
+	INC = -I../libraries/glfw-3.3.8.bin.WIN64/include
+	LIB = -L../libraries/glfw-3.3.8.bin.WIN64/lib-mingw-w64
 	LNK = -l glfw3 -l gdi32 -l opengl32
 	OPT = 
 else ifeq ($(findstring Darwin,$(UNAME)),Darwin)
-	INC = -I../libraries/glfw-3.3.4.bin.MACOS/include
-	LIB = -L../libraries/glfw-3.3.4.bin.MACOS/lib-universal
+	INC = -I../libraries/glfw-3.3.8.bin.MACOS/include
+	LIB = -L../libraries/glfw-3.3.8.bin.MACOS/lib-universal
 	LNK = -l glfw3 -framework Cocoa -framework OpenGL -framework IOKit
 	OPT = -arch arm64 -arch x86_64 -Wno-deprecated
 else ifeq ($(findstring Linux,$(UNAME)),Linux)
