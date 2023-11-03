@@ -22,7 +22,7 @@ void renderScene(GLFWwindow* window)
 {
     int width, height;
     glfwGetFramebufferSize(window, &width, &height);
-    float ratio = width / (float) height;
+    float ratio = width / (float)height;
     glViewport(0, 0, width, height);
     
     glClearColor(0.29f,0.36f,0.4f,1.0f);

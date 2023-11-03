@@ -113,7 +113,7 @@ static void renderMesh(mesh m, matrix transform, GLuint texture)
 
 static mesh createCubeMesh(color col)
 {
-    vertex* vertices = (vertex *)calloc(24, sizeof(vertex));
+    vertex* vertices = (vertex*)calloc(24, sizeof(vertex));
 
     vector3 norm = { 0, 0, 1 };
 
@@ -145,12 +145,12 @@ static mesh createSphereMesh(color col)
     const int rings = segments / 2;
     
     int vcount = segments * rings * 4;
-    vertex* vertices = (vertex *)calloc(vcount, sizeof(vertex));
+    vertex* vertices = (vertex*)calloc(vcount, sizeof(vertex));
 
-    vector3 **vectors = (vector3 **)calloc(segments+1, sizeof(vector3 *));
+    vector3** vectors = (vector3**)calloc(segments+1, sizeof(vector3*));
     for (int i = 0; i <= segments; i++)
     {
-        vectors[i] = (vector3 *)calloc(rings+1, sizeof(vector3));
+        vectors[i] = (vector3*)calloc(rings+1, sizeof(vector3));
     }
     
     for (int y = 0; y <= rings; y++)

@@ -82,7 +82,7 @@ static void renderMesh(mesh m, matrix transform)
 
 static mesh createCubeMesh(color col)
 {
-    vertex* vertices = (vertex *)calloc(24, sizeof(vertex));
+    vertex* vertices = (vertex*)calloc(24, sizeof(vertex));
     vertices[0] = (vertex){ { -1, -1,  1 }, col };
     vertices[1] = (vertex){ {  1, -1,  1 }, col };
     vertices[2] = (vertex){ {  1,  1,  1 }, col };
@@ -110,12 +110,12 @@ static mesh createSphereMesh(color col)
     const int rings = segments / 2;
     
     int vcount = segments * rings * 4;
-    vertex* vertices = (vertex *)calloc(vcount, sizeof(vertex));
+    vertex* vertices = (vertex*)calloc(vcount, sizeof(vertex));
 
-    vector3 **vectors = (vector3 **)calloc(segments+1, sizeof(vector3 *));
+    vector3** vectors = (vector3**)calloc(segments+1, sizeof(vector3*));
     for (int i = 0; i <= segments; i++)
     {
-        vectors[i] = (vector3 *)calloc(rings+1, sizeof(vector3));
+        vectors[i] = (vector3*)calloc(rings+1, sizeof(vector3));
     }
     
     for (int y = 0; y <= rings; y++)
