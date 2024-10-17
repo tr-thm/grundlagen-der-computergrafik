@@ -1,0 +1,16 @@
+---
+# options: https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+BasedOnStyle: Microsoft
+NamespaceIndentation: All
+AllowShortIfStatementsOnASingleLine: WithoutElse
+AllowShortLambdasOnASingleLine: None
+IncludeBlocks: Regroup
+FixNamespaceComments: false
+BreakBeforeBraces: Custom
+BraceWrapping:
+    BeforeLambdaBody: true
+    AfterCaseLabel: true
+LambdaBodyIndentation: OuterScope
+IndentCaseLabels: true
+ColumnLimit: 0
+BreakBeforeConceptDeclarations: Always

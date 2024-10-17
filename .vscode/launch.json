@@ -2,17 +2,94 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug Active Project",
+            "name": "CGB 01",
+            "program": "${workspaceFolder}/bin/cgb_01",
+            "cwd": "${workspaceFolder}/cgb_01",
+            "preLaunchTask": "make cgb_01",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/bin/engine",
-            "args": [],
-            "cwd": "${fileDirname}",
-            "preLaunchTask": "Make",
-            "MIMode": "gdb",
-            "osx": {
-                "MIMode": "lldb"
-            }
+            "MIMode": "lldb"
+        },
+        {
+            "name": "CGB 02",
+            "program": "${workspaceFolder}/bin/cgb_02",
+            "cwd": "${workspaceFolder}/cgb_02",
+            "preLaunchTask": "make cgb_02",
+            "type": "cppdbg",
+            "request": "launch",
+            "MIMode": "lldb"
+        },
+        {
+            "name": "CGB 03",
+            "program": "${workspaceFolder}/bin/cgb_03",
+            "cwd": "${workspaceFolder}/cgb_03",
+            "preLaunchTask": "make cgb_03",
+            "type": "cppdbg",
+            "request": "launch",
+            "MIMode": "lldb"
+        },
+        {
+            "name": "CGB 04",
+            "program": "${workspaceFolder}/bin/cgb_04",
+            "cwd": "${workspaceFolder}/cgb_04",
+            "preLaunchTask": "make cgb_04",
+            "type": "cppdbg",
+            "request": "launch",
+            "MIMode": "lldb"
+        },
+        {
+            "name": "CGB 05",
+            "program": "${workspaceFolder}/bin/cgb_05",
+            "cwd": "${workspaceFolder}/cgb_05",
+            "preLaunchTask": "make cgb_05",
+            "type": "cppdbg",
+            "request": "launch",
+            "MIMode": "lldb"
+        },
+        {
+            "name": "CGB 06",
+            "program": "${workspaceFolder}/bin/cgb_06",
+            "cwd": "${workspaceFolder}/cgb_06",
+            "preLaunchTask": "make cgb_06",
+            "type": "cppdbg",
+            "request": "launch",
+            "MIMode": "lldb"
+        },
+        {
+            "name": "CGB 07",
+            "program": "${workspaceFolder}/bin/cgb_07",
+            "cwd": "${workspaceFolder}/cgb_07",
+            "preLaunchTask": "make cgb_07",
+            "type": "cppdbg",
+            "request": "launch",
+            "MIMode": "lldb"
+        },
+        {
+            "name": "CGB 08",
+            "program": "${workspaceFolder}/bin/cgb_08",
+            "cwd": "${workspaceFolder}/cgb_08",
+            "preLaunchTask": "make cgb_08",
+            "type": "cppdbg",
+            "request": "launch",
+            "MIMode": "lldb"
+        },
+        {
+            "name": "CGB 09",
+            "program": "${workspaceFolder}/bin/cgb_09",
+            "cwd": "${workspaceFolder}/cgb_09",
+            "preLaunchTask": "make cgb_09",
+            "type": "cppdbg",
+            "request": "launch",
+            "MIMode": "lldb"
+        },
+        {
+            "name": "CGB 10",
+            "program": "${workspaceFolder}/bin/cgb_10",
+            "cwd": "${workspaceFolder}/cgb_10",
+            "preLaunchTask": "make cgb_10",
+            "type": "cppdbg",
+            "request": "launch",
+            "MIMode": "lldb"
         }
     ]
 }

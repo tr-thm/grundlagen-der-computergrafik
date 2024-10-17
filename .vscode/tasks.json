@@ -3,24 +3,91 @@
     "tasks": [
         {
             "type": "shell",
-            "label": "Make",
-            "command": "make -C '${fileDirname}'",
+            "label": "make cgb_01",
+            "command": "make cgb_01",
             "group": {
-                "kind": "build",
-                "isDefault": true
+                "kind": "build"
             }
         },
         {
             "type": "shell",
-            "label": "Make Run",
-            "command": "make run -C '${fileDirname}'",
-            "group": "none"
+            "label": "make cgb_02",
+            "command": "make cgb_02",
+            "group": {
+                "kind": "build"
+            }
         },
         {
             "type": "shell",
-            "label": "Make Clean",
-            "command": "make clean -C '${fileDirname}'",
-            "group": "none"
+            "label": "make cgb_03",
+            "command": "make cgb_03",
+            "group": {
+                "kind": "build"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "make cgb_04",
+            "command": "make cgb_04",
+            "group": {
+                "kind": "build"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "make cgb_05",
+            "command": "make cgb_05",
+            "group": {
+                "kind": "build"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "make cgb_06",
+            "command": "make cgb_06",
+            "group": {
+                "kind": "build"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "make cgb_07",
+            "command": "make cgb_07",
+            "group": {
+                "kind": "build"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "make cgb_08",
+            "command": "make cgb_08",
+            "group": {
+                "kind": "build"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "make cgb_09",
+            "command": "make cgb_09",
+            "group": {
+                "kind": "build"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "make cgb_10",
+            "command": "make cgb_10",
+            "group": {
+                "kind": "build"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "make clean",
+            "command": "make clean",
+            "group": {
+                "kind": "build"
+            }
         }
     ]
 }

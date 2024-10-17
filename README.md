@@ -12,11 +12,18 @@ Dieses Repository enthält den Code zur Vorlesung "Grundlagen der Computergrafik
 
 ## Projekt starten
 
-Jedes Kapitel enthält ein eigenes `Makefile`. Wechseln Sie in das jeweilige Verzeichnis und führen Sie `make` bzw `make run` aus.
+Öffnen Sie den Ordner in Visual Studio Code. In der **Run and Debug** Ansicht lässt sich das passende Kapitel auswählen und starten.
+
+Die einzelnen Tasks zum bauen der Kapitel und auch zum Aufräumen sind über das Menü **Terminal** ➔ **Run Build Task...** verfügbar.
+
+Über die Kommandozeile lassen sich die einzelnen Kapitel wie folgt bauen, starten und aufräumen:
 
 ```
-$ cd cgb_01
-$ make run
+$ make cgb_01
+
+$ bin/cgb_01
+
+$ make clean
 ```
 
 
