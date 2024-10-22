@@ -19,6 +19,8 @@
 
 #include "renderer.h"
 
+#include <iostream>
+
 Renderer::Renderer(const std::string &title, uint32_t width, uint32_t height)
 {
     glfwSetErrorCallback([](int error, const char *description)

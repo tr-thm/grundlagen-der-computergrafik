@@ -19,8 +19,9 @@
 
 #pragma once
 
+#define GLFW_INCLUDE_GLEXT
 #include <GLFW/glfw3.h>
-#include <iostream>
+#include <string>
 
 class Renderer
 {
@@ -31,5 +32,5 @@ class Renderer
     void onKeyboardInput(GLFWwindow *window, int key, int scancode, int action, int mods);
 
   private:
-    GLFWwindow *window;
+    GLFWwindow *window = nullptr;
 };
