@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "llvm-vs-code-extensions.vscode-clangd",
+        "llvm-vs-code-extensions.lldb-dap",
+        "slevesque.shader",
+        "dmnsgn.vscode-wavefront",
+        "moshfeu.compare-folders"
+    ]
+}

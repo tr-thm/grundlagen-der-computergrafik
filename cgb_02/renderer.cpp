@@ -25,7 +25,7 @@ Renderer::Renderer(const std::string &title, uint32_t width, uint32_t height)
 {
     glfwSetErrorCallback([](int error, const char *description)
     {
-        std::cerr << "Error: " << description << std::endl;
+        std::cerr << "GLFW Error: " << description << std::endl;
     });
 
     if (!glfwInit())

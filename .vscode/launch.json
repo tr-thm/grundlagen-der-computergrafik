@@ -6,90 +6,110 @@
             "program": "${workspaceFolder}/bin/cgb_01",
             "cwd": "${workspaceFolder}/cgb_01",
             "preLaunchTask": "make cgb_01",
-            "type": "cppdbg",
+            "type": "lldb-dap",
             "request": "launch",
-            "MIMode": "lldb"
+            "windows": {
+                "program": "${workspaceFolder}/bin/cgb_01.exe",
+            }
         },
         {
             "name": "CGB 02",
             "program": "${workspaceFolder}/bin/cgb_02",
             "cwd": "${workspaceFolder}/cgb_02",
             "preLaunchTask": "make cgb_02",
-            "type": "cppdbg",
+            "type": "lldb-dap",
             "request": "launch",
-            "MIMode": "lldb"
+            "windows": {
+                "program": "${workspaceFolder}/bin/cgb_02.exe",
+            }
         },
         {
             "name": "CGB 03",
             "program": "${workspaceFolder}/bin/cgb_03",
             "cwd": "${workspaceFolder}/cgb_03",
             "preLaunchTask": "make cgb_03",
-            "type": "cppdbg",
+            "type": "lldb-dap",
             "request": "launch",
-            "MIMode": "lldb"
+            "windows": {
+                "program": "${workspaceFolder}/bin/cgb_03.exe",
+            }
         },
         {
             "name": "CGB 04",
             "program": "${workspaceFolder}/bin/cgb_04",
             "cwd": "${workspaceFolder}/cgb_04",
             "preLaunchTask": "make cgb_04",
-            "type": "cppdbg",
+            "type": "lldb-dap",
             "request": "launch",
-            "MIMode": "lldb"
+            "windows": {
+                "program": "${workspaceFolder}/bin/cgb_04.exe",
+            }
         },
         {
             "name": "CGB 05",
             "program": "${workspaceFolder}/bin/cgb_05",
             "cwd": "${workspaceFolder}/cgb_05",
             "preLaunchTask": "make cgb_05",
-            "type": "cppdbg",
+            "type": "lldb-dap",
             "request": "launch",
-            "MIMode": "lldb"
+            "windows": {
+                "program": "${workspaceFolder}/bin/cgb_05.exe",
+            }
         },
         {
             "name": "CGB 06",
             "program": "${workspaceFolder}/bin/cgb_06",
             "cwd": "${workspaceFolder}/cgb_06",
             "preLaunchTask": "make cgb_06",
-            "type": "cppdbg",
+            "type": "lldb-dap",
             "request": "launch",
-            "MIMode": "lldb"
+            "windows": {
+                "program": "${workspaceFolder}/bin/cgb_06.exe",
+            }
         },
         {
             "name": "CGB 07",
             "program": "${workspaceFolder}/bin/cgb_07",
             "cwd": "${workspaceFolder}/cgb_07",
             "preLaunchTask": "make cgb_07",
-            "type": "cppdbg",
+            "type": "lldb-dap",
             "request": "launch",
-            "MIMode": "lldb"
+            "windows": {
+                "program": "${workspaceFolder}/bin/cgb_07.exe",
+            }
         },
         {
             "name": "CGB 08",
             "program": "${workspaceFolder}/bin/cgb_08",
             "cwd": "${workspaceFolder}/cgb_08",
             "preLaunchTask": "make cgb_08",
-            "type": "cppdbg",
+            "type": "lldb-dap",
             "request": "launch",
-            "MIMode": "lldb"
+            "windows": {
+                "program": "${workspaceFolder}/bin/cgb_08.exe",
+            }
         },
         {
             "name": "CGB 09",
             "program": "${workspaceFolder}/bin/cgb_09",
             "cwd": "${workspaceFolder}/cgb_09",
             "preLaunchTask": "make cgb_09",
-            "type": "cppdbg",
+            "type": "lldb-dap",
             "request": "launch",
-            "MIMode": "lldb"
+            "windows": {
+                "program": "${workspaceFolder}/bin/cgb_09.exe",
+            }
         },
         {
             "name": "CGB 10",
             "program": "${workspaceFolder}/bin/cgb_10",
             "cwd": "${workspaceFolder}/cgb_10",
             "preLaunchTask": "make cgb_10",
-            "type": "cppdbg",
+            "type": "lldb-dap",
             "request": "launch",
-            "MIMode": "lldb"
+            "windows": {
+                "program": "${workspaceFolder}/bin/cgb_10.exe",
+            }
         }
     ]
 }

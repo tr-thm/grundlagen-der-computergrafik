@@ -19,9 +19,10 @@
 
 #pragma once
 
+#define GLFW_INCLUDE_GLEXT
+
 #include "scene.h"
 
-#define GLFW_INCLUDE_GLEXT
 #include <GLFW/glfw3.h>
 #include <string>
 
