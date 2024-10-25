@@ -1,2 +1,9 @@
-CompileFlags:
-  Add: [-std=c++20]
+{
+  "CompileFlags": {
+    "Add": [
+      "-std=c++20",
+      "-Wno-deprecated-declarations",
+      "-Ilibraries/glad/include"
+    ]
+  }
+}

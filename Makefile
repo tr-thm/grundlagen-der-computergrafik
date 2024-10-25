@@ -54,7 +54,8 @@ clean:
 	@rm -rf obj bin
 
 starter-set:
-	zip grundlagen-der-computergrafik.zip README.md Makefile LICENSE .gitignore .clang-format cgb_01 cgb_02 cgb_03 libraries/* libraries/**/* libraries/**/**/* libraries/**/**/**/* libraries/**/**/**/**/* libraries/**/**/**/**/**/* .vscode/launch.json .vscode/tasks.json
+	zip grundlagen-der-computergrafik.zip README.md Makefile LICENSE .gitignore .clang-format .clangd compile_flags.txt cgb_01 cgb_02 cgb_03 .vscode/launch.json .vscode/tasks.json .vscode/extensions.json
+	zip -r grundlagen-der-computergrafik.zip libraries
 
 # Automatically generate rules for each subfolder
 .PHONY: all clean $(SRC_DIRS)
