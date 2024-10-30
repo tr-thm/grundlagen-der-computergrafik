@@ -19,36 +19,25 @@
 
 #pragma once
 
-#include "cgmath.h"
-
-#define GLFW_INCLUDE_GLEXT
-#include <GLFW/glfw3.h>
-
 class Camera
 {
   public:
     Camera();
     Camera(double pitch, double yaw, double cameraDistance);
     ~Camera();
+    void changePosition(double x, double y);
+    void changeDistance(double deltaZ);
     void loadProjectionMatrix(float aspectRatio) const;
     void loadViewMatrix() const;
-    void enableCameraMouseControl(GLFWwindow *window);
 
   private:
-    double pitch;
-    double yaw;
+    double pitch = 0.0;
+    double yaw = 0.0;
 
-    // replace with vec3 as camera position?
-    double cameraDistance;
+    double cameraDistance = 0.0;
 
-    double mouseLastX;
-    double mouseLastY;
-    double scrollSpeed;
-    double mouseSpeed;
-
-    static void cursorPositionCallback(GLFWwindow *window, double x, double y);
-    static void scrollCallback(GLFWwindow *window, double xOffset, double yOffset);
-
-    void changePosition(double x, double y);
-    void changeDistance(double xOffset, double yOffset);
+    double mouseLastX = 0.0;
+    double mouseLastY = 0.0;
+    double scrollSpeed = 0.1;
+    double mouseSpeed = 0.05;
 };

@@ -43,16 +43,35 @@ Renderer::Renderer(const std::string &title, uint32_t width, uint32_t height)
 
     glfwMakeContextCurrent(window);
     glfwSetWindowUserPointer(window, this);
-    glfwSetKeyCallback(window, [](GLFWwindow *w, int key, int scancode, int action, int mods)
+    glfwSetKeyCallback(window, [](GLFWwindow *window, int key, int scancode, int action, int mods)
     {
-        auto renderer = static_cast<Renderer *>(glfwGetWindowUserPointer(w));
-        renderer->onKeyboardInput(w, key, scancode, action, mods);
+        Renderer *self = static_cast<Renderer *>(glfwGetWindowUserPointer(window));
+        self->onKeyboardInput(window, key, scancode, action, mods);
     });
 
     glEnable(GL_MULTISAMPLE);
     glfwSwapInterval(1);
 
-    activeCamera.enableCameraMouseControl(window);
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    if (glfwRawMouseMotionSupported())
+    {
+        glfwSetInputMode(window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE);
+    }
+
+    double mousePositionX, mousePositionY;
+    glfwGetCursorPos(window, &mousePositionX, &mousePositionY);
+    activeCamera.changePosition(mousePositionX, mousePositionY);
+    glfwSetCursorPosCallback(window, [](GLFWwindow *window, double x, double y)
+    {
+        Renderer *self = static_cast<Renderer *>(glfwGetWindowUserPointer(window));
+        self->activeCamera.changePosition(x, y);
+    });
+    
+    glfwSetScrollCallback(window, [](GLFWwindow *window, double xOffset, double yOffset)
+    {
+        Renderer *self = static_cast<Renderer *>(glfwGetWindowUserPointer(window));
+        self->activeCamera.changeDistance(yOffset);
+    });
 }
 
 Renderer::~Renderer()

@@ -19,11 +19,11 @@
 
 #pragma once
 
+#define GLFW_INCLUDE_GLEXT
+
 #include "camera.h"
-#include "cgmath.h"
 #include "scene.h"
 
-#define GLFW_INCLUDE_GLEXT
 #include <GLFW/glfw3.h>
 #include <string>
 

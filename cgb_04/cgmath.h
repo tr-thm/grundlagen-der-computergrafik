@@ -19,11 +19,13 @@
 
 #pragma once
 
+#define _USE_MATH_DEFINES
+
 #include <cmath>
 
 inline double deg2rad(double deg)
 {
-    return deg * M_PI / 180.0f;
+    return deg * M_PI / 180.0;
 }
 
 struct Matrix4
@@ -33,8 +35,15 @@ struct Matrix4
     double m13;  double m23;  double m33;  double m43;
     double m14;  double m24;  double m34;  double m44;
 
-    float values[16];
-
+    /**
+     * Creates a translation matrix that translates points
+     * by the given x, y, and z values.
+     *
+     * @param x The translation distance along the x-axis.
+     * @param y The translation distance along the y-axis.
+     * @param z The translation distance along the z-axis.
+     * @return The translation matrix.
+     */
     static Matrix4 translate(double x, double y, double z)
     {
         Matrix4 m = {
@@ -46,6 +55,12 @@ struct Matrix4
         return m;
     }
 
+    /**
+     * Creates a rotation matrix for a rotation around the X-axis.
+     * 
+     * @param a The angle of rotation in radians.
+     * @return The rotation matrix.
+     */
     static Matrix4 rotateX(double a)
     {
         Matrix4 m = {
@@ -57,6 +72,12 @@ struct Matrix4
         return m;
     }
 
+    /**
+     * Creates a rotation matrix for a rotation around the Y-axis.
+     * 
+     * @param a The angle of rotation in radians.
+     * @return The rotation matrix.
+     */
     static Matrix4 rotateY(double a)
     {
         Matrix4 m = {
@@ -68,6 +89,12 @@ struct Matrix4
         return m;
     }
 
+    /**
+     * Creates a rotation matrix for a rotation around the Z-axis.
+     * 
+     * @param a The angle of rotation in radians.
+     * @return The rotation matrix.
+     */
     static Matrix4 rotateZ(double a)
     {
         Matrix4 m = {
@@ -79,9 +106,13 @@ struct Matrix4
         return m;
     }
 
-    float *toFloat()
+    /**
+     * Converts the matrix to column-major order and stores the result in the provided array.
+     * 
+     * @param values A reference to a 16-element array of floats where the column-major matrix elements will be stored.
+     */
+    void toColumnMajor(float (&values)[16]) const
     {
-        // Reorder for OpenGL
         values[0] = static_cast<float>(m11);
         values[1] = static_cast<float>(m12);
         values[2] = static_cast<float>(m13);
@@ -98,7 +129,5 @@ struct Matrix4
         values[13] = static_cast<float>(m42);
         values[14] = static_cast<float>(m43);
         values[15] = static_cast<float>(m44);
-
-        return values;
     }
 };

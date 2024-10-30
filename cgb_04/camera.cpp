@@ -17,74 +17,25 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#define GLFW_INCLUDE_GLEXT
+
 #include "camera.h"
 
+#include "cgmath.h"
+
+#include <GLFW/glfw3.h>
+
 Camera::Camera()
-    : pitch(0.0), yaw(0.0), cameraDistance(0.0), mouseLastX(0.0), mouseLastY(0.0), scrollSpeed(0.1), mouseSpeed(0.05)
 {
 }
 
 Camera::Camera(double pitch, double yaw, double cameraDistance)
-    : pitch(pitch), yaw(yaw), cameraDistance(cameraDistance), mouseLastX(0.0), mouseLastY(0.0), scrollSpeed(0.1), mouseSpeed(0.05)
+    : pitch(pitch), yaw(yaw), cameraDistance(cameraDistance)
 {
 }
 
 Camera::~Camera()
 {
-}
-
-void Camera::loadProjectionMatrix(float aspectRatio) const
-{
-    float zNear = 0.1f;
-    float zFar = 100.0f;
-    float fov = deg2rad(45.0f);
-
-    float h = zNear * tanf(fov * 0.5f);
-    float w = h * aspectRatio;
-
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glFrustum(-w, w, -h, h, zNear, zFar);
-}
-
-void Camera::loadViewMatrix() const
-{
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-
-    Matrix4 translation = Matrix4::translate(0.0, 0.0, -cameraDistance);
-    glMultMatrixf(translation.toFloat());
-
-    Matrix4 pitchRotation = Matrix4::rotateX(deg2rad(-pitch));
-    glMultMatrixf(pitchRotation.toFloat());
-
-    Matrix4 yawRotation = Matrix4::rotateY(deg2rad(-yaw));
-    glMultMatrixf(yawRotation.toFloat());
-}
-
-void Camera::enableCameraMouseControl(GLFWwindow *window)
-{
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-    if (glfwRawMouseMotionSupported())
-    {
-        glfwSetInputMode(window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE);
-    }
-    glfwSetScrollCallback(window, scrollCallback);
-    glfwSetCursorPosCallback(window, cursorPositionCallback);
-    glfwGetCursorPos(window, &mouseLastX, &mouseLastY);
-    glfwSetWindowUserPointer(window, this);
-}
-
-void Camera::cursorPositionCallback(GLFWwindow *window, double x, double y)
-{
-    Camera *camera = static_cast<Camera *>(glfwGetWindowUserPointer(window));
-    camera->changePosition(x, y);
-}
-
-void Camera::scrollCallback(GLFWwindow *window, double xOffset, double yOffset)
-{
-    Camera *camera = static_cast<Camera *>(glfwGetWindowUserPointer(window));
-    camera->changeDistance(xOffset, yOffset);
 }
 
 void Camera::changePosition(double x, double y)
@@ -116,12 +67,47 @@ void Camera::changePosition(double x, double y)
     this->pitch = pitch;
 }
 
-void Camera::changeDistance(double xOffset, double yOffset)
+void Camera::changeDistance(double deltaZ)
 {
-    double distance = cameraDistance - yOffset * scrollSpeed;
+    double distance = cameraDistance - deltaZ * scrollSpeed;
 
     if (distance < 1.4) distance = 1.4;
     if (distance > 20.0) distance = 20.0;
 
     cameraDistance = distance;
+}
+
+void Camera::loadProjectionMatrix(float aspectRatio) const
+{
+    float zNear = 0.1f;
+    float zFar = 100.0f;
+    float fov = deg2rad(45.0f);
+
+    float h = zNear * tanf(fov * 0.5f);
+    float w = h * aspectRatio;
+
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glFrustum(-w, w, -h, h, zNear, zFar);
+}
+
+void Camera::loadViewMatrix() const
+{
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+
+    Matrix4 translation = Matrix4::translate(0.0, 0.0, -cameraDistance);
+    float translationF[16];
+    translation.toColumnMajor(translationF);
+    glMultMatrixf(translationF);
+
+    Matrix4 pitchRotation = Matrix4::rotateX(deg2rad(-pitch));
+    float pitchRotationF[16];
+    pitchRotation.toColumnMajor(pitchRotationF);
+    glMultMatrixf(pitchRotationF);
+
+    Matrix4 yawRotation = Matrix4::rotateY(deg2rad(-yaw));
+    float yawRotationF[16];
+    yawRotation.toColumnMajor(yawRotationF);
+    glMultMatrixf(yawRotationF);
 }
