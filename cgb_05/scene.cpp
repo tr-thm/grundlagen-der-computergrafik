@@ -17,23 +17,25 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#pragma once
+#include "scene.h"
 
-#define GLFW_INCLUDE_GLEXT
-
-#include "mesh.h"
-
-#include <GLFW/glfw3.h>
-#include <vector>
-
-class Scene
+Scene::Scene()
 {
-  public:
-    Scene();
-    ~Scene();
-    void addMesh(Mesh *mesh);
-    void render();
+}
 
-  private:
-    std::vector<Mesh *> meshes;
-};
+Scene::~Scene()
+{
+}
+
+void Scene::addMesh(Mesh *mesh)
+{
+    meshes.push_back(mesh);
+}
+
+void Scene::render()
+{
+    for (const Mesh *mesh : meshes)
+    {
+        mesh->render();
+    }
+}

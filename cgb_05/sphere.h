@@ -19,21 +19,21 @@
 
 #pragma once
 
-#define GLFW_INCLUDE_GLEXT
-
 #include "mesh.h"
 
-#include <GLFW/glfw3.h>
 #include <vector>
 
-class Scene
+class Sphere : public Mesh
 {
   public:
-    Scene();
-    ~Scene();
-    void addMesh(Mesh *mesh);
-    void render();
+    Sphere(Color color);
+    ~Sphere();
+    void render() const override;
+    void setPosition(Vector3 position) override;
+    void setRotation(Vector3 rotationInDeg) override;
 
   private:
-    std::vector<Mesh *> meshes;
+    Vector3 position;
+    Vector3 rotation; // in rad
+    std::vector<Vertex> vertices;
 };

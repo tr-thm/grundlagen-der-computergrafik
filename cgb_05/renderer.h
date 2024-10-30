@@ -21,19 +21,29 @@
 
 #define GLFW_INCLUDE_GLEXT
 
-#include "mesh.h"
+#include "camera.h"
+#include "scene.h"
 
 #include <GLFW/glfw3.h>
-#include <vector>
+#include <string>
 
-class Scene
+class Renderer
 {
   public:
-    Scene();
-    ~Scene();
-    void addMesh(Mesh *mesh);
-    void render();
+    Renderer(const std::string &title, uint32_t width, uint32_t height);
+    ~Renderer();
+    void start();
+    void printFps();
+    void onKeyboardInput(GLFWwindow *window, int key, int scancode, int action, int mods);
 
   private:
-    std::vector<Mesh *> meshes;
+    GLFWwindow *window = nullptr;
+    bool resized = false;
+    Camera activeCamera = Camera(0.0, 0.0, 5.0);
+    double previousTime = 0.0;
+    uint32_t frameCount = 0;
+    uint32_t fps = 0;
+
+    void renderScene(Scene &scene) const;
+    void setViewportSize();
 };
