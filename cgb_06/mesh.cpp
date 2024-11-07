@@ -17,22 +17,16 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#pragma once
-
 #include "mesh.h"
 
-#include <vector>
-
-class Scene
+void Mesh::setPosition(const Vector3 &position)
 {
-  public:
-    Scene();
-    ~Scene();
-    void addMesh(Mesh *mesh);
-    void render();
-    void setLight(const Vector4 &position, const Color &diffuse, const Color &ambient, const Color &specular);
+    this->position = position;
+}
 
-  private:
-    std::vector<Mesh *> meshes;
-    float lightPosition[4];
-};
+void Mesh::setRotation(const Vector3 &rotationInDeg)
+{
+    this->rotation.x = deg2rad(rotationInDeg.x);
+    this->rotation.y = deg2rad(rotationInDeg.y);
+    this->rotation.z = deg2rad(rotationInDeg.z);
+}

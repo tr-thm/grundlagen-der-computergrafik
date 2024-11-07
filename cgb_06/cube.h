@@ -21,18 +21,10 @@
 
 #include "mesh.h"
 
-#include <vector>
-
-class Scene
+class Cube : public Mesh
 {
   public:
-    Scene();
-    ~Scene();
-    void addMesh(Mesh *mesh);
-    void render();
-    void setLight(const Vector4 &position, const Color &diffuse, const Color &ambient, const Color &specular);
-
-  private:
-    std::vector<Mesh *> meshes;
-    float lightPosition[4];
+    Cube(const Color &color);
+    ~Cube();
+    void render() const override;
 };

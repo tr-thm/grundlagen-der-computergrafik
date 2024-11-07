@@ -19,20 +19,31 @@
 
 #pragma once
 
-#include "mesh.h"
+#define GLFW_INCLUDE_GLEXT
 
-#include <vector>
+#include "camera.h"
+#include "scene.h"
 
-class Scene
+#include <GLFW/glfw3.h>
+#include <string>
+
+class Renderer
 {
   public:
-    Scene();
-    ~Scene();
-    void addMesh(Mesh *mesh);
-    void render();
-    void setLight(const Vector4 &position, const Color &diffuse, const Color &ambient, const Color &specular);
+    Renderer(const std::string &title, uint32_t width, uint32_t height);
+    ~Renderer();
+    void start();
+    void printFps();
+    void onKeyboardInput(GLFWwindow *window, int key, int scancode, int action, int mods);
 
   private:
-    std::vector<Mesh *> meshes;
-    float lightPosition[4];
+    GLFWwindow *window = nullptr;
+    bool resized = false;
+    Camera activeCamera = Camera(0.0, 0.0, 5.0);
+    double previousTime = 0.0;
+    uint32_t frameCount = 0;
+    uint32_t fps = 0;
+
+    void renderScene(Scene &scene) const;
+    void setViewportSize();
 };
