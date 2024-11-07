@@ -17,9 +17,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#define GLFW_INCLUDE_GLEXT
+
 #include "sphere.h"
 
-Sphere::Sphere(Color color)
+#include <GLFW/glfw3.h>
+
+Sphere::Sphere(const Color &color)
 {
     const int segments = 64;
     const int rings = segments / 2;
@@ -29,7 +33,7 @@ Sphere::Sphere(Color color)
     vectors.resize(segments + 1);
     std::vector<Vector3> fillVector;
     fillVector.resize(rings + 1);
-    std::fill(fillVector.begin(), fillVector.end(), Vector3{0.0, 0.0, 0.0});
+    std::fill(fillVector.begin(), fillVector.end(), Vector3(0.0, 0.0, 0.0));
     std::fill(vectors.begin(), vectors.end(), fillVector);
 
     for (int y = 0; y <= rings; y++)
@@ -83,16 +87,4 @@ void Sphere::render() const
     }
     glEnd();
     glPopMatrix();
-}
-
-void Sphere::setPosition(Vector3 position)
-{
-    this->position = position;
-}
-
-void Sphere::setRotation(Vector3 rotationInDeg)
-{
-    this->rotation.x = deg2rad(rotationInDeg.x);
-    this->rotation.y = deg2rad(rotationInDeg.y);
-    this->rotation.z = deg2rad(rotationInDeg.z);
 }

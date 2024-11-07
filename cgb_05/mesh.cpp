@@ -19,10 +19,14 @@
 
 #include "mesh.h"
 
-Mesh::Mesh()
+void Mesh::setPosition(const Vector3 &position)
 {
+    this->position = position;
 }
 
-Mesh::~Mesh()
+void Mesh::setRotation(const Vector3 &rotationInDeg)
 {
+    this->rotation.x = deg2rad(rotationInDeg.x);
+    this->rotation.y = deg2rad(rotationInDeg.y);
+    this->rotation.z = deg2rad(rotationInDeg.z);
 }

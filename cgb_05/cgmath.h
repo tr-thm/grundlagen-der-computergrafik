@@ -54,7 +54,7 @@ struct Vector4
 
     Vector3 xyz()
     {
-        return Vector3{x, y, z};
+        return {x, y, z};
     }
 };
 
@@ -68,7 +68,7 @@ struct Color
 
 struct Vertex
 {
-    Vertex(Vector3 position, Color color)
+    Vertex(const Vector3 &position, const Color &color)
         : position(static_cast<float>(position.x), static_cast<float>(position.y), static_cast<float>(position.z)),
           color(static_cast<float>(color.r), static_cast<float>(color.g), static_cast<float>(color.b))
     {
@@ -107,7 +107,7 @@ struct Matrix4
 
     /**
      * Creates a rotation matrix for a rotation around the X-axis.
-     * 
+     *
      * @param a The angle of rotation in radians.
      * @return The rotation matrix.
      */
@@ -124,7 +124,7 @@ struct Matrix4
 
     /**
      * Creates a rotation matrix for a rotation around the Y-axis.
-     * 
+     *
      * @param a The angle of rotation in radians.
      * @return The rotation matrix.
      */
@@ -141,7 +141,7 @@ struct Matrix4
 
     /**
      * Creates a rotation matrix for a rotation around the Z-axis.
-     * 
+     *
      * @param a The angle of rotation in radians.
      * @return The rotation matrix.
      */
@@ -158,10 +158,10 @@ struct Matrix4
 
     /**
      * @brief Overloaded multiplication operator for Matrix4.
-     * 
+     *
      * This operator multiplies the current Matrix4 instance with another Matrix4 instance.
      * The multiplication is performed in a standard matrix multiplication manner.
-     * 
+     *
      * @param b The right-hand side Matrix4 to be multiplied with the current instance.
      * @return Matrix4 The result of the matrix multiplication.
      */
@@ -193,11 +193,11 @@ struct Matrix4
 
     /**
      * @brief Multiplies this matrix by a given Vector4.
-     * 
+     *
      * This operator performs matrix-vector multiplication, resulting in a new Vector4.
-     * Each component of the resulting vector is computed as the dot product of the 
+     * Each component of the resulting vector is computed as the dot product of the
      * corresponding row of the matrix and the input vector.
-     * 
+     *
      * @param v The Vector4 to be multiplied by this matrix.
      * @return A new Vector4 that is the result of the matrix-vector multiplication.
      */
@@ -214,7 +214,7 @@ struct Matrix4
 
     /**
      * Converts the matrix to column-major order and stores the result in the provided array.
-     * 
+     *
      * @param values A reference to a 16-element array of floats where the column-major matrix elements will be stored.
      */
     void toColumnMajor(float (&values)[16]) const

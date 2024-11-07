@@ -19,9 +19,8 @@
 
 #include "renderer.h"
 
-#include "sphere.h"
 #include "cube.h"
-
+#include "sphere.h"
 
 #include <iostream>
 
@@ -60,7 +59,7 @@ Renderer::Renderer(const std::string &title, uint32_t width, uint32_t height)
 
     glEnable(GL_MULTISAMPLE);
     glfwSwapInterval(1);
-    //glEnable(GL_CULL_FACE);
+    glEnable(GL_CULL_FACE);
 
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     if (glfwRawMouseMotionSupported())
@@ -76,7 +75,7 @@ Renderer::Renderer(const std::string &title, uint32_t width, uint32_t height)
         Renderer *self = static_cast<Renderer *>(glfwGetWindowUserPointer(window));
         self->activeCamera.changePosition(x, y);
     });
-    
+
     glfwSetScrollCallback(window, [](GLFWwindow *window, double xOffset, double yOffset)
     {
         Renderer *self = static_cast<Renderer *>(glfwGetWindowUserPointer(window));
@@ -92,13 +91,13 @@ Renderer::~Renderer()
 
 void Renderer::start()
 {
-    Cube *cube1 = new Cube(Color{0.5f, 0.73f, 0.14f, 1.0f});
-    cube1->setPosition(Vector3{3.0, 0.0, 0.0});
+    Cube *cube1 = new Cube(Color(0.5f, 0.73f, 0.14f, 1.0f));
+    cube1->setPosition(Vector3(3.0, 0.0, 0.0));
 
-    Cube *cube2 = new Cube(Color{0.96f, 0.67f, 0.0f, 1.0f});
-    cube2->setPosition(Vector3{-3.0, 0.0, 0.0});
+    Cube *cube2 = new Cube(Color(0.96f, 0.67f, 0.0f, 1.0f));
+    cube2->setPosition(Vector3(-3.0, 0.0, 0.0));
 
-    Sphere *sphere1 = new Sphere(Color{0.61f, 0.07f, 0.18f, 1.0f});
+    Sphere *sphere1 = new Sphere(Color(0.61f, 0.07f, 0.18f, 1.0f));
 
     Scene scene1;
     scene1.addMesh(cube1);

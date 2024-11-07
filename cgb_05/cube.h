@@ -21,19 +21,10 @@
 
 #include "mesh.h"
 
-#include <vector>
-
 class Cube : public Mesh
 {
   public:
-    Cube(Color color);
+    Cube(const Color &color);
     ~Cube();
     void render() const override;
-    void setPosition(Vector3 position) override;
-    void setRotation(Vector3 rotationInDeg) override;
-
-  private:
-    Vector3 position;
-    Vector3 rotation; // in rad
-    std::vector<Vertex> vertices;
 };

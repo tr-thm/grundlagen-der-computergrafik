@@ -21,14 +21,17 @@
 
 #include "cgmath.h"
 
-#include <GLFW/glfw3.h>
+#include <vector>
 
 class Mesh
 {
   public:
-    Mesh();
-    virtual ~Mesh();
     virtual void render() const = 0;
-    virtual void setPosition(Vector3 position) = 0;
-    virtual void setRotation(Vector3 rotationInDeg) = 0;
+    void setPosition(const Vector3 &position);
+    void setRotation(const Vector3 &rotationInDeg);
+
+  protected:
+    Vector3 position;
+    Vector3 rotation; // in rad
+    std::vector<Vertex> vertices;
 };

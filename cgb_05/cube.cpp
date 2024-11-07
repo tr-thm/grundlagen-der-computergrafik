@@ -16,17 +16,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+#define GLFW_INCLUDE_GLEXT
 
 #include "cube.h"
-#include <OpenGL/OpenGL.h>
 
-Cube::Cube(Color color)
-    : position(Vector3{0.0, 0.0, 0.0}), rotation(Vector3{0.0, 0.0, 0.0})
+#include <GLFW/glfw3.h>
+
+Cube::Cube(const Color &color)
 {
     Vector3 p1(-1, -1, 1);
     Vector3 p2( 1, -1, 1);
     Vector3 p3( 1,  1, 1);
     Vector3 p4(-1,  1, 1);
+
     vertices.emplace_back(p1, color);
     vertices.emplace_back(p2, color);
     vertices.emplace_back(p3, color);
@@ -75,16 +77,4 @@ void Cube::render() const
     }
     glEnd();
     glPopMatrix();
-}
-
-void Cube::setPosition(Vector3 position)
-{
-    this->position = position;
-}
-
-void Cube::setRotation(Vector3 rotationInDeg)
-{
-    this->rotation.x = deg2rad(rotationInDeg.x);
-    this->rotation.y = deg2rad(rotationInDeg.y);
-    this->rotation.z = deg2rad(rotationInDeg.z);
 }

@@ -21,19 +21,10 @@
 
 #include "mesh.h"
 
-#include <vector>
-
 class Sphere : public Mesh
 {
   public:
-    Sphere(Color color);
+    Sphere(const Color &color);
     ~Sphere();
     void render() const override;
-    void setPosition(Vector3 position) override;
-    void setRotation(Vector3 rotationInDeg) override;
-
-  private:
-    Vector3 position;
-    Vector3 rotation; // in rad
-    std::vector<Vertex> vertices;
 };

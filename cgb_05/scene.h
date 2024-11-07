@@ -19,11 +19,8 @@
 
 #pragma once
 
-#define GLFW_INCLUDE_GLEXT
-
 #include "mesh.h"
 
-#include <GLFW/glfw3.h>
 #include <vector>
 
 class Scene
