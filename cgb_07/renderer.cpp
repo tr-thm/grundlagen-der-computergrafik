@@ -23,6 +23,7 @@
 #include "sphere.h"
 
 #include <iostream>
+#include <stdexcept>
 
 namespace Colors
 {

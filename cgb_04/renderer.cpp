@@ -66,7 +66,7 @@ Renderer::Renderer(const std::string &title, uint32_t width, uint32_t height)
         Renderer *self = static_cast<Renderer *>(glfwGetWindowUserPointer(window));
         self->activeCamera.changePosition(x, y);
     });
-    
+
     glfwSetScrollCallback(window, [](GLFWwindow *window, double xOffset, double yOffset)
     {
         Renderer *self = static_cast<Renderer *>(glfwGetWindowUserPointer(window));

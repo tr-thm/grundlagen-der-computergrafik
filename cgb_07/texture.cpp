@@ -23,6 +23,8 @@
 
 #include "stb_image.h"
 
+#include <stdexcept>
+
 Texture::Texture(const std::string &filename)
     : filename(filename)
 {
