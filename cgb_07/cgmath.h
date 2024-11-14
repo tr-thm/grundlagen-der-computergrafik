@@ -175,7 +175,7 @@ struct Matrix4
      * @param b The right-hand side Matrix4 to be multiplied with the current instance.
      * @return Matrix4 The result of the matrix multiplication.
      */
-    Matrix4 operator*(const Matrix4 &b)
+    Matrix4 operator*(const Matrix4 &b) const
     {
         Matrix4 result = {
             m11 * b.m11 + m21 * b.m12 + m31 * b.m13 + m41 * b.m14,

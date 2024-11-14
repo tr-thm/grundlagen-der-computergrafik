@@ -67,32 +67,3 @@ Sphere::Sphere(const Color &color, std::shared_ptr<Texture> &texture)
         }
     }
 }
-
-void Sphere::render() const
-{
-    Matrix4 translationMatrix = Matrix4::translate(position.x, position.y, position.z);
-    Matrix4 rotationMatrix = Matrix4::rotateX(rotation.x) * Matrix4::rotateY(rotation.y) * Matrix4::rotateZ(rotation.z);
-
-    Matrix4 worldMatrix = translationMatrix * rotationMatrix;
-
-    glBindTexture(GL_TEXTURE_2D, texture->id);
-    glEnable(GL_TEXTURE_2D);
-
-    glPushMatrix();
-    float worldMatrixF[16];
-    worldMatrix.toColumnMajor(worldMatrixF);
-    glMultMatrixf(worldMatrixF);
-    glBegin(GL_QUADS);
-    for (auto vertex : vertices)
-    {
-        glNormal3fv((float *)&vertex.normal);
-        glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, (float *)&vertex.color);
-        glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, (float *)&vertex.color);
-        glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 30.0f);
-        glTexCoord2fv((float *)&vertex.texcoord);
-        glVertex3fv((float *)&vertex.position);
-    }
-    glEnd();
-    glPopMatrix();
-    glDisable(GL_TEXTURE_2D);
-}

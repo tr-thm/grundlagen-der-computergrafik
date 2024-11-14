@@ -26,14 +26,38 @@ Mesh::Mesh(std::shared_ptr<Texture> &texture)
 {
 }
 
-void Mesh::setPosition(const Vector3 &position)
+void Mesh::render() const
 {
-    this->position = position;
+    Matrix4 worldMatrix = position * rotation;
+
+    glBindTexture(GL_TEXTURE_2D, texture->id);
+    glEnable(GL_TEXTURE_2D);
+
+    glPushMatrix();
+    float worldMatrixF[16];
+    worldMatrix.toColumnMajor(worldMatrixF);
+    glMultMatrixf(worldMatrixF);
+    glBegin(GL_QUADS);
+    for (auto vertex : vertices)
+    {
+        glNormal3fv((float *)&vertex.normal);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, (float *)&vertex.color);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, (float *)&vertex.color);
+        glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 30.0f);
+        glTexCoord2fv((float *)&vertex.texcoord);
+        glVertex3fv((float *)&vertex.position);
+    }
+    glEnd();
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
 }
 
-void Mesh::setRotation(const Vector3 &rotationInDeg)
+void Mesh::setPosition(const Vector3 &position)
 {
-    this->rotation.x = deg2rad(rotationInDeg.x);
-    this->rotation.y = deg2rad(rotationInDeg.y);
-    this->rotation.z = deg2rad(rotationInDeg.z);
+    this->position = Matrix4::translate(position.x, position.y, position.z);
+}
+
+void Mesh::setRotation(const Vector3 &rotation)
+{
+    this->rotation = Matrix4::rotateX(rotation.x) * Matrix4::rotateY(rotation.y) * Matrix4::rotateZ(rotation.z);
 }

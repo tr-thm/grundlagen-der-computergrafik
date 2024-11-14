@@ -25,5 +25,4 @@ class Cube : public Mesh
 {
   public:
     Cube(const Color &color, std::shared_ptr<Texture> &texture);
-    void render() const override;
 };
