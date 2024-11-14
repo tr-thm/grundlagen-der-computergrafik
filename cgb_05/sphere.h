@@ -25,5 +25,4 @@ class Sphere : public Mesh
 {
   public:
     Sphere(const Color &color);
-    void render() const override;
 };

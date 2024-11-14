@@ -17,16 +17,36 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#define GLFW_INCLUDE_GLEXT
+
 #include "mesh.h"
+
+#include <GLFW/glfw3.h>
+
+void Mesh::render() const
+{
+    Matrix4 worldMatrix = position * rotation;
+
+    glPushMatrix();
+    float worldMatrixF[16];
+    worldMatrix.toColumnMajor(worldMatrixF);
+    glMultMatrixf(worldMatrixF);
+    glBegin(GL_QUADS);
+    for (auto vertex : vertices)
+    {
+        glColor3fv((float *)&vertex.color);
+        glVertex3fv((float *)&vertex.position);
+    }
+    glEnd();
+    glPopMatrix();
+}
 
 void Mesh::setPosition(const Vector3 &position)
 {
-    this->position = position;
+    this->position = Matrix4::translate(position.x, position.y, position.z);
 }
 
-void Mesh::setRotation(const Vector3 &rotationInDeg)
+void Mesh::setRotation(const Vector3 &rotation)
 {
-    this->rotation.x = deg2rad(rotationInDeg.x);
-    this->rotation.y = deg2rad(rotationInDeg.y);
-    this->rotation.z = deg2rad(rotationInDeg.z);
+    this->rotation = Matrix4::rotateX(rotation.x) * Matrix4::rotateY(rotation.y) * Matrix4::rotateZ(rotation.z);
 }

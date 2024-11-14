@@ -25,5 +25,4 @@ class Cube : public Mesh
 {
   public:
     Cube(const Color &color);
-    void render() const override;
 };
