@@ -21,7 +21,7 @@
 
 #include "texture.h"
 
-Mesh::Mesh(const Texture &texture)
+Mesh::Mesh(std::shared_ptr<Texture> &texture)
     : texture(texture)
 {
 }

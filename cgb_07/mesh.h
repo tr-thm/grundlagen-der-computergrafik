@@ -22,12 +22,14 @@
 #include "cgmath.h"
 #include "texture.h"
 
+#include <memory>
 #include <vector>
 
 class Mesh
 {
   public:
-    Mesh(const Texture &texture);
+    Mesh(std::shared_ptr<Texture> &texture);
+    virtual ~Mesh() = default;
     virtual void render() const = 0;
     void setPosition(const Vector3 &position);
     void setRotation(const Vector3 &rotationInDeg);
@@ -36,5 +38,5 @@ class Mesh
     Vector3 position;
     Vector3 rotation; // in rad
     std::vector<Vertex> vertices;
-    const Texture &texture;
+    std::shared_ptr<Texture> texture;
 };

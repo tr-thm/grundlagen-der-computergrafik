@@ -102,31 +102,31 @@ Renderer::~Renderer()
 
 void Renderer::start()
 {
-    Texture thmTexture = Texture("res/thm2k.png");
-    Texture earthTexture = Texture("res/earth8k.jpg");
+    auto thmTexture = std::make_shared<Texture>("res/thm2k.png");
+    auto earthTexture = std::make_shared<Texture>("res/earth8k.jpg");
 
-    Cube *cube1 = new Cube(Colors::white, thmTexture);
+    auto cube1 = std::make_shared<Cube>(Colors::white, thmTexture);
     cube1->setPosition(Vector3(3.0, 0.0, 0.0));
 
-    Cube *cube2 = new Cube(Colors::white, thmTexture);
+    auto cube2 = std::make_shared<Cube>(Colors::white, thmTexture);
     cube2->setPosition(Vector3(-3.0, 0.0, 0.0));
 
-    Sphere *sphere1 = new Sphere(Colors::white, earthTexture);
+    auto sphere = std::make_shared<Sphere>(Colors::white, earthTexture);
 
-    Scene scene1;
-    scene1.addMesh(cube1);
-    scene1.addMesh(cube2);
-    scene1.addMesh(sphere1);
+    Scene scene;
+    scene.addMesh(cube1);
+    scene.addMesh(cube2);
+    scene.addMesh(sphere);
 
     setViewportSize();
     glClearColor(0.29f, 0.36f, 0.4f, 1.0f);
 
     Vector4 lightPosition(50000, 20000, 50000, 0);
-    scene1.setLight(lightPosition, Colors::sunLight, Colors::ambientLight, Colors::white);
+    scene.setLight(lightPosition, Colors::sunLight, Colors::ambientLight, Colors::white);
 
     while (!glfwWindowShouldClose(window))
     {
-        renderScene(scene1);
+        renderScene(scene);
         glfwSwapBuffers(window);
         glfwPollEvents();
         printFps();

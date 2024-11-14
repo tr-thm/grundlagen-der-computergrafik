@@ -54,10 +54,6 @@ Cube::Cube(const Color &color)
     }
 }
 
-Cube::~Cube()
-{
-}
-
 void Cube::render() const
 {
     Matrix4 translationMatrix = Matrix4::translate(position.x, position.y, position.z);

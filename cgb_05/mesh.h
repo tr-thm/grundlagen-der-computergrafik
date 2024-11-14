@@ -26,6 +26,7 @@
 class Mesh
 {
   public:
+    virtual ~Mesh() = default;
     virtual void render() const = 0;
     void setPosition(const Vector3 &position);
     void setRotation(const Vector3 &rotationInDeg);

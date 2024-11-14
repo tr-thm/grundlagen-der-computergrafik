@@ -25,16 +25,17 @@ Scene::Scene()
 
 Scene::~Scene()
 {
+    meshes.clear();
 }
 
-void Scene::addMesh(Mesh *mesh)
+void Scene::addMesh(const std::shared_ptr<Mesh> &mesh)
 {
     meshes.push_back(mesh);
 }
 
 void Scene::render()
 {
-    for (const Mesh *mesh : meshes)
+    for (std::shared_ptr<Mesh> &mesh : meshes)
     {
         mesh->render();
     }

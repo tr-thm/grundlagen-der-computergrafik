@@ -21,6 +21,7 @@
 
 #include "mesh.h"
 
+#include <memory>
 #include <vector>
 
 class Scene
@@ -28,9 +29,9 @@ class Scene
   public:
     Scene();
     ~Scene();
-    void addMesh(Mesh *mesh);
+    void addMesh(const std::shared_ptr<Mesh> &mesh);
     void render();
 
   private:
-    std::vector<Mesh *> meshes;
+    std::vector<std::shared_ptr<Mesh>> meshes;
 };

@@ -33,6 +33,11 @@ $(foreach dir,$(SRC_DIRS), $(eval bin/$(dir): $$(OBJ_$(dir))))
 # Define build target for each chapter
 $(SRC_DIRS): %: bin/%
 
+# Rule to run the binary
+run_%: %
+	@echo Running $< ...
+	@cd $< && ../bin/$<
+
 # Rule to link the binary
 bin/%:
 	@echo Linking $@ ...

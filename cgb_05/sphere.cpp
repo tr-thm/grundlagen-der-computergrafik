@@ -64,10 +64,6 @@ Sphere::Sphere(const Color &color)
     }
 }
 
-Sphere::~Sphere()
-{
-}
-
 void Sphere::render() const
 {
     Matrix4 translationMatrix = Matrix4::translate(position.x, position.y, position.z);

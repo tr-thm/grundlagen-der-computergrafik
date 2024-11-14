@@ -21,6 +21,7 @@
 
 #include "mesh.h"
 
+#include <memory>
 #include <vector>
 
 class Scene
@@ -28,11 +29,11 @@ class Scene
   public:
     Scene();
     ~Scene();
-    void addMesh(Mesh *mesh);
+    void addMesh(const std::shared_ptr<Mesh> &mesh);
     void render();
     void setLight(const Vector4 &position, const Color &diffuse, const Color &ambient, const Color &specular);
 
   private:
-    std::vector<Mesh *> meshes;
-    float lightPosition[4];
+    std::vector<std::shared_ptr<Mesh>> meshes;
+    float lightPosition[4] = {0.0f, 0.0f, 0.0f, 0.0f};
 };

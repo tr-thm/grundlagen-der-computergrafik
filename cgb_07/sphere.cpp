@@ -23,7 +23,7 @@
 
 #include <GLFW/glfw3.h>
 
-Sphere::Sphere(const Color &color, const Texture &texture)
+Sphere::Sphere(const Color &color, std::shared_ptr<Texture> &texture)
     : Mesh(texture)
 {
     const int segments = 64;
@@ -68,10 +68,6 @@ Sphere::Sphere(const Color &color, const Texture &texture)
     }
 }
 
-Sphere::~Sphere()
-{
-}
-
 void Sphere::render() const
 {
     Matrix4 translationMatrix = Matrix4::translate(position.x, position.y, position.z);
@@ -79,7 +75,7 @@ void Sphere::render() const
 
     Matrix4 worldMatrix = translationMatrix * rotationMatrix;
 
-    glBindTexture(GL_TEXTURE_2D, texture.id);
+    glBindTexture(GL_TEXTURE_2D, texture->id);
     glEnable(GL_TEXTURE_2D);
 
     glPushMatrix();

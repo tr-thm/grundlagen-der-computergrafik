@@ -25,6 +25,5 @@ class Sphere : public Mesh
 {
   public:
     Sphere(const Color &color);
-    ~Sphere();
     void render() const override;
 };

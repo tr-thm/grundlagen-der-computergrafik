@@ -22,7 +22,7 @@
 
 #include <GLFW/glfw3.h>
 
-Cube::Cube(const Color &color, const Texture &texture)
+Cube::Cube(const Color &color, std::shared_ptr<Texture> &texture)
     : Mesh(texture)
 {
     Vector3 p1(-1, -1, 1);
@@ -62,10 +62,6 @@ Cube::Cube(const Color &color, const Texture &texture)
     }
 }
 
-Cube::~Cube()
-{
-}
-
 void Cube::render() const
 {
     Matrix4 translationMatrix = Matrix4::translate(position.x, position.y, position.z);
@@ -73,7 +69,7 @@ void Cube::render() const
 
     Matrix4 worldMatrix = translationMatrix * rotationMatrix;
 
-    glBindTexture(GL_TEXTURE_2D, texture.id);
+    glBindTexture(GL_TEXTURE_2D, texture->id);
     glEnable(GL_TEXTURE_2D);
 
     glPushMatrix();

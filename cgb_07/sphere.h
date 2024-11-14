@@ -24,7 +24,6 @@
 class Sphere : public Mesh
 {
   public:
-    Sphere(const Color &color, const Texture &texture);
-    ~Sphere();
+    Sphere(const Color &color, std::shared_ptr<Texture> &texture);
     void render() const override;
 };
