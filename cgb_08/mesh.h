@@ -19,21 +19,26 @@
 
 #pragma once
 
-#include "mesh.h"
+#include "cgmath.h"
+#include "texture.h"
 
 #include <memory>
 #include <vector>
 
-class Scene
+class Mesh
 {
   public:
-    Scene();
-    ~Scene();
-    void addMesh(const std::shared_ptr<Mesh> &mesh);
-    void render();
-    void setLight(const Vector4 &position, const Color &diffuse, const Color &ambient, const Color &specular);
+    Mesh(std::shared_ptr<Texture> &texture);
+    virtual ~Mesh() = default;
+    virtual void render() const;
+    void setPosition(const Vector3 &position);
+    void setRotation(const Vector3 &rotation);
+    void setScale(const double scale);
 
-  private:
-    std::vector<std::shared_ptr<Mesh>> meshes;
-    float lightPosition[4] = {0.0f, 0.0f, 0.0f, 0.0f};
+  protected:
+    Matrix4 position = Matrix4::translate(0, 0,0);
+    Matrix4 rotation = Matrix4::rotateX(0.0);
+    Matrix4 scale = Matrix4::scale(1.0);
+    std::vector<Vertex> vertices = {};
+    std::shared_ptr<Texture> texture = nullptr;
 };

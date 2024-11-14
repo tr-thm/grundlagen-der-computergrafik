@@ -22,18 +22,16 @@
 #include "mesh.h"
 
 #include <memory>
-#include <vector>
 
-class Scene
+class Simulation
 {
   public:
-    Scene();
-    ~Scene();
-    void addMesh(const std::shared_ptr<Mesh> &mesh);
-    void render();
-    void setLight(const Vector4 &position, const Color &diffuse, const Color &ambient, const Color &specular);
+    Simulation(const std::shared_ptr<Mesh> &earth, const std::shared_ptr<Mesh> &satellite);
+    void update();
 
   private:
-    std::vector<std::shared_ptr<Mesh>> meshes;
-    float lightPosition[4] = {0.0f, 0.0f, 0.0f, 0.0f};
+    void updateEarthRotation(double time);
+    void updateSatellitePosition(double time);
+    std::shared_ptr<Mesh> earth;
+    std::shared_ptr<Mesh> satellite;
 };

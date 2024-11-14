@@ -17,23 +17,21 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#pragma once
+#include "renderer.h"
 
-#include "mesh.h"
+#include <iostream>
 
-#include <memory>
-#include <vector>
-
-class Scene
+int main()
 {
-  public:
-    Scene();
-    ~Scene();
-    void addMesh(const std::shared_ptr<Mesh> &mesh);
-    void render();
-    void setLight(const Vector4 &position, const Color &diffuse, const Color &ambient, const Color &specular);
-
-  private:
-    std::vector<std::shared_ptr<Mesh>> meshes;
-    float lightPosition[4] = {0.0f, 0.0f, 0.0f, 0.0f};
-};
+    try
+    {
+        Renderer renderer("Grundlagen der Computergrafik", 1280, 720);
+        renderer.start();
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+        return EXIT_FAILURE;
+    }
+    return EXIT_SUCCESS;
+}
