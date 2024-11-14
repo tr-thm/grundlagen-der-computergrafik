@@ -26,12 +26,13 @@
 class Mesh
 {
   public:
-    virtual void render() const = 0;
+    virtual ~Mesh() = default;
+    virtual void render() const;
     void setPosition(const Vector3 &position);
-    void setRotation(const Vector3 &rotationInDeg);
+    void setRotation(const Vector3 &rotation);
 
   protected:
-    Vector3 position;
-    Vector3 rotation; // in rad
-    std::vector<Vertex> vertices;
+    Matrix4 position = Matrix4::translate(0, 0,0);
+    Matrix4 rotation = Matrix4::rotateX(0.0);
+    std::vector<Vertex> vertices = {};
 };

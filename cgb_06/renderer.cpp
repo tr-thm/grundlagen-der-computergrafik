@@ -23,6 +23,7 @@
 #include "sphere.h"
 
 #include <iostream>
+#include <stdexcept>
 
 namespace Colors
 {
@@ -101,28 +102,28 @@ Renderer::~Renderer()
 
 void Renderer::start()
 {
-    Cube *cube1 = new Cube(Color(0.5f, 0.73f, 0.14f, 1.0f));
+    auto cube1 = std::make_shared<Cube>(Color(0.5f, 0.73f, 0.14f, 1.0f));
     cube1->setPosition(Vector3(3.0, 0.0, 0.0));
 
-    Cube *cube2 = new Cube(Color(0.96f, 0.67f, 0.0f, 1.0f));
+    auto cube2 = std::make_shared<Cube>(Color(0.96f, 0.67f, 0.0f, 1.0f));
     cube2->setPosition(Vector3(-3.0, 0.0, 0.0));
 
-    Sphere *sphere1 = new Sphere(Color(0.61f, 0.07f, 0.18f, 1.0f));
+    auto sphere = std::make_shared<Sphere>(Color(0.61f, 0.07f, 0.18f, 1.0f));
 
-    Scene scene1;
-    scene1.addMesh(cube1);
-    scene1.addMesh(cube2);
-    scene1.addMesh(sphere1);
+    Scene scene;
+    scene.addMesh(cube1);
+    scene.addMesh(cube2);
+    scene.addMesh(sphere);
 
     setViewportSize();
     glClearColor(0.29f, 0.36f, 0.4f, 1.0f);
 
     Vector4 lightPosition(50000, 20000, 50000, 0);
-    scene1.setLight(lightPosition, Colors::sunLight, Colors::ambientLight, Colors::white);
+    scene.setLight(lightPosition, Colors::sunLight, Colors::ambientLight, Colors::white);
 
     while (!glfwWindowShouldClose(window))
     {
-        renderScene(scene1);
+        renderScene(scene);
         glfwSwapBuffers(window);
         glfwPollEvents();
         printFps();

@@ -17,11 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#define GLFW_INCLUDE_GLEXT
-
 #include "sphere.h"
-
-#include <GLFW/glfw3.h>
 
 Sphere::Sphere(const Color &color)
 {
@@ -62,32 +58,4 @@ Sphere::Sphere(const Color &color)
             vertices.emplace_back(vectors[x][y], vectors[x][y], color);
         }
     }
-}
-
-Sphere::~Sphere()
-{
-}
-
-void Sphere::render() const
-{
-    Matrix4 translationMatrix = Matrix4::translate(position.x, position.y, position.z);
-    Matrix4 rotationMatrix = Matrix4::rotateX(rotation.x) * Matrix4::rotateY(rotation.y) * Matrix4::rotateZ(rotation.z);
-
-    Matrix4 worldMatrix = translationMatrix * rotationMatrix;
-
-    glPushMatrix();
-    float worldMatrixF[16];
-    worldMatrix.toColumnMajor(worldMatrixF);
-    glMultMatrixf(worldMatrixF);
-    glBegin(GL_QUADS);
-    for (auto vertex : vertices)
-    {
-        glNormal3fv((float *)&vertex.normal);
-        glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, (float *)&vertex.color);
-        glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, (float *)&vertex.color);
-        glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 30.0f);
-        glVertex3fv((float *)&vertex.position);
-    }
-    glEnd();
-    glPopMatrix();
 }

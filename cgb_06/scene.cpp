@@ -31,7 +31,7 @@ Scene::~Scene()
 {
 }
 
-void Scene::addMesh(Mesh *mesh)
+void Scene::addMesh(const std::shared_ptr<Mesh> &mesh)
 {
     meshes.push_back(mesh);
 }
@@ -40,7 +40,7 @@ void Scene::render()
 {
     glLightfv(GL_LIGHT1, GL_POSITION, lightPosition);
 
-    for (const Mesh *mesh : meshes)
+    for (std::shared_ptr<Mesh> &mesh : meshes)
     {
         mesh->render();
     }
