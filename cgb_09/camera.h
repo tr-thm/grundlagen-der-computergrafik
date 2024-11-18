@@ -1,26 +1,43 @@
 /**
  * Grundlagen der Computergrafik
- * Copyright (C) 2023 Tobias Reimann
- * 
+ * Copyright © 2021-2024 Tobias Reimann
+ * Copyright © 2024 Lukas Scheurer: Rewritten in C++
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
-*/
+ */
 
-#include <GLFW/glfw3.h>
+#pragma once
 
-void loadCameraProjectionMatrix(float ratio);
-void loadCameraViewMatrix(int layer);
-void enableCameraMouseControl(GLFWwindow* window);
+class Camera
+{
+  public:
+    Camera(double pitch, double yaw, double cameraDistance);
+    ~Camera();
+    void changePosition(double x, double y);
+    void changeDistance(double deltaZ);
+    void loadProjectionMatrix(double aspectRatio) const;
+    void loadViewMatrix() const;
+    void loadFixedViewMatrix() const;
 
-static void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos);
-static void scrollCallback(GLFWwindow* window, double xoffset, double yoffset);
+  private:
+    double pitch = 0.0;
+    double yaw = 0.0;
+
+    double cameraDistance = 0.0;
+
+    double mouseLastX = 0.0;
+    double mouseLastY = 0.0;
+    double scrollSpeed = 0.1;
+    double mouseSpeed = 0.05;
+};
