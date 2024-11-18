@@ -19,6 +19,8 @@
 
 #include "simulation.h"
 
+#include <chrono>
+
 Simulation::Simulation(const std::shared_ptr<Mesh> &earth, const std::shared_ptr<Mesh> &satellite)
 {
     this->earth = earth;
