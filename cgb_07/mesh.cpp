@@ -30,26 +30,32 @@ void Mesh::render() const
 {
     Matrix4 worldMatrix = position * rotation;
 
-    glBindTexture(GL_TEXTURE_2D, texture->id);
-    glEnable(GL_TEXTURE_2D);
+    if (texture)
+    {
+        glBindTexture(GL_TEXTURE_2D, texture->id);
+    }
 
     glPushMatrix();
     float worldMatrixF[16];
     worldMatrix.toColumnMajor(worldMatrixF);
     glMultMatrixf(worldMatrixF);
+
+    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, (float *)&ambient);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, (float *)&diffuse);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, (float *)&specular);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, (float *)&emission);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess);
+
     glBegin(GL_QUADS);
     for (auto vertex : vertices)
     {
         glNormal3fv((float *)&vertex.normal);
-        glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, (float *)&vertex.color);
-        glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, (float *)&vertex.color);
-        glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 30.0f);
         glTexCoord2fv((float *)&vertex.texcoord);
         glVertex3fv((float *)&vertex.position);
     }
     glEnd();
     glPopMatrix();
-    glDisable(GL_TEXTURE_2D);
+    if (texture) glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void Mesh::setPosition(const Vector3 &position)
@@ -60,4 +66,13 @@ void Mesh::setPosition(const Vector3 &position)
 void Mesh::setRotation(const Vector3 &rotation)
 {
     this->rotation = Matrix4::rotateX(rotation.x) * Matrix4::rotateY(rotation.y) * Matrix4::rotateZ(rotation.z);
+}
+
+void Mesh::setMaterial(const Color &diffuse, const Color &specular, const Color &emission, const Color &ambient, const float shininess)
+{
+    std::copy(&diffuse.r, &diffuse.r + 3, this->diffuse);
+    std::copy(&specular.r, &specular.r + 3, this->specular);
+    std::copy(&emission.r, &emission.r + 3, this->emission);
+    std::copy(&ambient.r, &ambient.r + 3, this->ambient);
+    this->shininess = shininess;
 }

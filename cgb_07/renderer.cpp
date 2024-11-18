@@ -20,6 +20,7 @@
 #include "renderer.h"
 
 #include "cube.h"
+#include "scene.h"
 #include "sphere.h"
 
 #include <iostream>
@@ -29,7 +30,7 @@ namespace Colors
 {
     Color white = Color(1.0, 1.0, 1.0, 1.0);
     Color sunLight = Color(0.9, 0.9, 0.9, 1.0);
-    Color ambientLight = Color(0.1, 0.1, 0.1, 1.0);
+    Color ambientLight = Color(0.05, 0.05, 0.05, 1.0);
 }
 
 Renderer::Renderer(const std::string &title, uint32_t width, uint32_t height)
@@ -70,7 +71,8 @@ Renderer::Renderer(const std::string &title, uint32_t width, uint32_t height)
     glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_LIGHTING);
-    glEnable(GL_NORMALIZE);
+    glEnable(GL_RESCALE_NORMAL);
+    glEnable(GL_TEXTURE_2D);
 
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     if (glfwRawMouseMotionSupported())
@@ -103,7 +105,7 @@ Renderer::~Renderer()
 void Renderer::start()
 {
     auto thmTexture = std::make_shared<Texture>("res/thm2k.png");
-    auto earthTexture = std::make_shared<Texture>("res/earth8k.jpg");
+    auto earthTexture = std::make_shared<Texture>("res/earth_diffuse.jpg");
 
     auto cube1 = std::make_shared<Cube>(Colors::white, thmTexture);
     cube1->setPosition(Vector3(3.0, 0.0, 0.0));
@@ -113,20 +115,21 @@ void Renderer::start()
 
     auto sphere = std::make_shared<Sphere>(Colors::white, earthTexture);
 
-    Scene scene;
-    scene.addMesh(cube1);
-    scene.addMesh(cube2);
-    scene.addMesh(sphere);
+    Scene foreground;
+    foreground.addMesh(cube1);
+    foreground.addMesh(cube2);
+    foreground.addMesh(sphere);
 
     setViewportSize();
     glClearColor(0.29f, 0.36f, 0.4f, 1.0f);
 
     Vector4 lightPosition(50000, 20000, 50000, 0);
-    scene.setLight(lightPosition, Colors::sunLight, Colors::ambientLight, Colors::white);
+    foreground.setLight(lightPosition, Colors::sunLight, Colors::ambientLight, Colors::white);
 
     while (!glfwWindowShouldClose(window))
     {
-        renderScene(scene);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        foreground.render(activeCamera);
         glfwSwapBuffers(window);
         glfwPollEvents();
         printFps();
@@ -155,15 +158,6 @@ void Renderer::onKeyboardInput(GLFWwindow *window, int key, int scancode, int ac
             glfwMaximizeWindow(window);
         }
     }
-}
-
-void Renderer::renderScene(Scene &scene) const
-{
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    activeCamera.loadViewMatrix();
-
-    scene.render();
 }
 
 void Renderer::printFps()

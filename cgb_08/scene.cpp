@@ -36,11 +36,13 @@ void Scene::addMesh(const std::shared_ptr<Mesh> &mesh)
     meshes.push_back(mesh);
 }
 
-void Scene::render()
+void Scene::render(const Camera &camera) const
 {
     glLightfv(GL_LIGHT1, GL_POSITION, lightPosition);
 
-    for (std::shared_ptr<Mesh> &mesh : meshes)
+    camera.loadViewMatrix();
+
+    for (const std::shared_ptr<Mesh> &mesh : meshes)
     {
         mesh->render();
     }

@@ -19,6 +19,7 @@
 
 #pragma once
 
+#include "camera.h"
 #include "mesh.h"
 
 #include <memory>
@@ -30,7 +31,7 @@ class Scene
     Scene();
     ~Scene();
     void addMesh(const std::shared_ptr<Mesh> &mesh);
-    void render();
+    void render(const Camera &camera) const;
     void setLight(const Vector4 &position, const Color &diffuse, const Color &ambient, const Color &specular);
 
   private:

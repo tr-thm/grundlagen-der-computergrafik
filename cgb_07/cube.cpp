@@ -16,19 +16,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-#define GLFW_INCLUDE_GLEXT
 
 #include "cube.h"
-
-#include <GLFW/glfw3.h>
 
 Cube::Cube(const Color &color, std::shared_ptr<Texture> &texture)
     : Mesh(texture)
 {
     Vector3 p1(-1, -1, 1);
-    Vector3 p2(1, -1, 1);
-    Vector3 p3(1, 1, 1);
-    Vector3 p4(-1, 1, 1);
+    Vector3 p2( 1, -1, 1);
+    Vector3 p3( 1,  1, 1);
+    Vector3 p4(-1,  1, 1);
     Vector3 normal(0, 0, 1);
     Vector2 t1(0, 0);
     Vector2 t2(1, 0);

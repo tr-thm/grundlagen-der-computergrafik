@@ -77,14 +77,14 @@ void Camera::changeDistance(double deltaZ)
     cameraDistance = distance;
 }
 
-void Camera::loadProjectionMatrix(float aspectRatio) const
+void Camera::loadProjectionMatrix(double aspectRatio) const
 {
-    float zNear = 0.1f;
-    float zFar = 100.0f;
-    float fov = deg2rad(45.0f);
+    double zNear = 0.1;
+    double zFar = 100.0;
+    double fov = deg2rad(45.0);
 
-    float h = zNear * tanf(fov * 0.5f);
-    float w = h * aspectRatio;
+    double h = zNear * tanf(fov * 0.5);
+    double w = h * aspectRatio;
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();

@@ -27,7 +27,7 @@ class Camera
     ~Camera();
     void changePosition(double x, double y);
     void changeDistance(double deltaZ);
-    void loadProjectionMatrix(float aspectRatio) const;
+    void loadProjectionMatrix(double aspectRatio) const;
     void loadViewMatrix() const;
 
   private:

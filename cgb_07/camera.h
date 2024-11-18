@@ -22,12 +22,11 @@
 class Camera
 {
   public:
-    Camera();
     Camera(double pitch, double yaw, double cameraDistance);
     ~Camera();
     void changePosition(double x, double y);
     void changeDistance(double deltaZ);
-    void loadProjectionMatrix(float aspectRatio) const;
+    void loadProjectionMatrix(double aspectRatio) const;
     void loadViewMatrix() const;
 
   private:

@@ -34,6 +34,7 @@ class Mesh
     void setPosition(const Vector3 &position);
     void setRotation(const Vector3 &rotation);
     void setScale(const double scale);
+    void setMaterial(const Color &diffuse, const Color &specular, const Color &emission, const Color &ambient, const float shininess);
 
   protected:
     Matrix4 position = Matrix4::translate(0, 0,0);
@@ -41,4 +42,9 @@ class Mesh
     Matrix4 scale = Matrix4::scale(1.0);
     std::vector<Vertex> vertices = {};
     std::shared_ptr<Texture> texture = nullptr;
+    float diffuse[3] = {1.0f, 1.0f, 1.0f};
+    float specular[3] = {1.0f, 1.0f, 1.0f};
+    float emission[3] = {0.0f, 0.0f, 0.0f};
+    float ambient[3] = {1.0f, 1.0f, 1.0f};
+    float shininess = 30.0f;
 };
