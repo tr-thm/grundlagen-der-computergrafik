@@ -75,9 +75,13 @@ Renderer::Renderer(const std::string &title, uint32_t width, uint32_t height)
     glfwSwapInterval(1);
     glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
-    glEnable(GL_LIGHTING);
-    glEnable(GL_RESCALE_NORMAL);
     glEnable(GL_TEXTURE_2D);
+
+    glEnable(GL_LIGHTING);
+    glEnable(GL_NORMALIZE);
+    float noLight[4] = {0.0, 0.0, 0.0, 1.0};
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, noLight);
+
     glEnable(GL_BLEND);
     glBlendFunc(GL_ONE, GL_ZERO);
 
