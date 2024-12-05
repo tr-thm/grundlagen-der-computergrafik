@@ -38,34 +38,38 @@ void Scene::addMesh(const std::shared_ptr<Mesh> &mesh)
 
 void Scene::render(const Camera &camera) const
 {
-    glLightfv(GL_LIGHT1, GL_POSITION, lightPosition);
-
     camera.loadViewMatrix();
+
+    glEnable(GL_LIGHT1);
+    glLightfv(GL_LIGHT1, GL_POSITION, lightPosition);
+    glLightfv(GL_LIGHT1, GL_AMBIENT, lightAmbient);
+    glLightfv(GL_LIGHT1, GL_DIFFUSE, lightDiffuse);
+    glLightfv(GL_LIGHT1, GL_SPECULAR, lightSpecular);
 
     for (const std::shared_ptr<Mesh> &mesh : meshes)
     {
         mesh->render();
     }
+
+    glDisable(GL_LIGHT1);
 }
 
 void Scene::setLight(const Vector4 &position, const Color &diffuse, const Color &ambient, const Color &specular)
 {
-    float noLight[4] = {0.0, 0.0, 0.0, 1.0};
-    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, noLight);
-
-    glEnable(GL_LIGHT1);
-
     lightPosition[0] = static_cast<float>(position.x);
     lightPosition[1] = static_cast<float>(position.y);
     lightPosition[2] = static_cast<float>(position.z);
     lightPosition[3] = static_cast<float>(position.w);
 
-    float diffuseF[3] = {static_cast<float>(diffuse.r), static_cast<float>(diffuse.g), static_cast<float>(diffuse.b)};
-    glLightfv(GL_LIGHT1, GL_DIFFUSE, diffuseF);
+    lightAmbient[0] = static_cast<float>(ambient.r);
+    lightAmbient[1] = static_cast<float>(ambient.g);
+    lightAmbient[2] = static_cast<float>(ambient.b);
 
-    float ambientF[3] = {static_cast<float>(ambient.r), static_cast<float>(ambient.g), static_cast<float>(ambient.b)};
-    glLightfv(GL_LIGHT1, GL_AMBIENT, ambientF);
+    lightDiffuse[0] = static_cast<float>(diffuse.r);
+    lightDiffuse[1] = static_cast<float>(diffuse.g);
+    lightDiffuse[2] = static_cast<float>(diffuse.b);
 
-    float specularF[3] = {static_cast<float>(specular.r), static_cast<float>(specular.g), static_cast<float>(specular.b)};
-    glLightfv(GL_LIGHT1, GL_SPECULAR, specularF);
+    lightSpecular[0] = static_cast<float>(specular.r);
+    lightSpecular[1] = static_cast<float>(specular.g);
+    lightSpecular[2] = static_cast<float>(specular.b);
 }
