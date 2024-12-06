@@ -19,8 +19,8 @@
 
 #include "planet.h"
 
-Planet::Planet(const Color &color, std::shared_ptr<Texture> &texture, std::shared_ptr<Texture> &specularTexture, std::shared_ptr<Texture> &nightTexture)
-    : Sphere(color, texture), specularTexture(specularTexture), nightTexture(nightTexture)
+Planet::Planet(std::shared_ptr<Texture> &texture, std::shared_ptr<Texture> &specularTexture, std::shared_ptr<Texture> &nightTexture)
+    : Sphere(texture), specularTexture(specularTexture), nightTexture(nightTexture)
 {
     // Custom lights
     float black[3] = {0.0f, 0.0f, 0.0f};

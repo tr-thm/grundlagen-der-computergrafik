@@ -24,7 +24,7 @@
 class Planet : public Sphere
 {
   public:
-    Planet(const Color &color, std::shared_ptr<Texture> &texture, std::shared_ptr<Texture> &specularTexture, std::shared_ptr<Texture> &nightTexture);
+    Planet(std::shared_ptr<Texture> &texture, std::shared_ptr<Texture> &specularTexture, std::shared_ptr<Texture> &nightTexture);
     void render() const override;
 
   private:

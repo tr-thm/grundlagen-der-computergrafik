@@ -24,5 +24,5 @@
 class Sphere : public Mesh
 {
   public:
-    Sphere(const Color &color, std::shared_ptr<Texture> &texture);
+    Sphere(std::shared_ptr<Texture> &texture);
 };

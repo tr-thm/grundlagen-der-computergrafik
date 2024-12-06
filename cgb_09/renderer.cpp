@@ -116,10 +116,10 @@ void Renderer::start()
     auto earthTexture = std::make_shared<Texture>("res/earth_diffuse.jpg");
     auto satelliteTexture = std::make_shared<Texture>("res/thm2k.png");
 
-    auto stars = std::make_shared<Skybox>(Colors::white, starTexture);
-    auto sun = std::make_shared<Sphere>(Colors::white, noTexture);
-    auto earth = std::make_shared<Sphere>(Colors::white, earthTexture);
-    auto satellite = std::make_shared<Cube>(Colors::white, satelliteTexture);
+    auto stars = std::make_shared<Skybox>(starTexture);
+    auto sun = std::make_shared<Sphere>(noTexture);
+    auto earth = std::make_shared<Sphere>(earthTexture);
+    auto satellite = std::make_shared<Cube>(satelliteTexture);
 
     satellite->setScale(0.01);
     satellite->setMaterial(Colors::black, Colors::black, Colors::white, Colors::black, 0.0f);

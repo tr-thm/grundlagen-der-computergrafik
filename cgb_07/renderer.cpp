@@ -110,13 +110,13 @@ void Renderer::start()
     auto thmTexture = std::make_shared<Texture>("res/thm2k.png");
     auto earthTexture = std::make_shared<Texture>("res/earth_diffuse.jpg");
 
-    auto cube1 = std::make_shared<Cube>(Colors::white, thmTexture);
+    auto cube1 = std::make_shared<Cube>(thmTexture);
     cube1->setPosition(Vector3(3.0, 0.0, 0.0));
 
-    auto cube2 = std::make_shared<Cube>(Colors::white, thmTexture);
+    auto cube2 = std::make_shared<Cube>(thmTexture);
     cube2->setPosition(Vector3(-3.0, 0.0, 0.0));
 
-    auto sphere = std::make_shared<Sphere>(Colors::white, earthTexture);
+    auto sphere = std::make_shared<Sphere>(earthTexture);
 
     Scene foreground;
     foreground.addMesh(cube1);

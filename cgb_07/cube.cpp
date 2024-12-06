@@ -19,7 +19,7 @@
 
 #include "cube.h"
 
-Cube::Cube(const Color &color, std::shared_ptr<Texture> &texture)
+Cube::Cube(std::shared_ptr<Texture> &texture)
     : Mesh(texture)
 {
     Vector3 p1(-1, -1, 1);
@@ -32,10 +32,10 @@ Cube::Cube(const Color &color, std::shared_ptr<Texture> &texture)
     Vector2 t3(1, 1);
     Vector2 t4(0, 1);
 
-    vertices.emplace_back(p1, normal, color, t1);
-    vertices.emplace_back(p2, normal, color, t2);
-    vertices.emplace_back(p3, normal, color, t3);
-    vertices.emplace_back(p4, normal, color, t4);
+    vertices.emplace_back(p1, normal, t1);
+    vertices.emplace_back(p2, normal, t2);
+    vertices.emplace_back(p3, normal, t3);
+    vertices.emplace_back(p4, normal, t4);
     for (int i = 1; i < 6; i++)
     {
         Matrix4 rotationMatrix;
@@ -46,15 +46,15 @@ Cube::Cube(const Color &color, std::shared_ptr<Texture> &texture)
         Vector3 normalRotated = (rotationMatrix * Vector4(normal, 1)).xyz();
 
         Vector4 result = rotationMatrix * Vector4(p1, 1.0);
-        vertices.emplace_back(result.xyz(), normalRotated, color, t1);
+        vertices.emplace_back(result.xyz(), normalRotated, t1);
 
         result = rotationMatrix * Vector4(p2, 1.0);
-        vertices.emplace_back(result.xyz(), normalRotated, color, t2);
+        vertices.emplace_back(result.xyz(), normalRotated, t2);
 
         result = rotationMatrix * Vector4(p3, 1.0);
-        vertices.emplace_back(result.xyz(), normalRotated, color, t3);
+        vertices.emplace_back(result.xyz(), normalRotated, t3);
 
         result = rotationMatrix * Vector4(p4, 1.0);
-        vertices.emplace_back(result.xyz(), normalRotated, color, t4);
+        vertices.emplace_back(result.xyz(), normalRotated, t4);
     }
 }

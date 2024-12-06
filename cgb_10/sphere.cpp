@@ -19,7 +19,7 @@
 
 #include "sphere.h"
 
-Sphere::Sphere(const Color &color, std::shared_ptr<Texture> &texture)
+Sphere::Sphere(std::shared_ptr<Texture> &texture)
     : Mesh(texture)
 {
     const int segments = 64;
@@ -51,10 +51,10 @@ Sphere::Sphere(const Color &color, std::shared_ptr<Texture> &texture)
             double tw = 1.0 / segments;
             double th = 1.0 / rings;
             double ty = rings - y;
-            vertices.emplace_back(vectors[x][y + 1], vectors[x][y + 1], color, Vector2(x * tw, (ty - 1) * th));
-            vertices.emplace_back(vectors[x + 1][y + 1], vectors[x + 1][y + 1], color, Vector2((x + 1) * tw, (ty - 1) * th));
-            vertices.emplace_back(vectors[x + 1][y], vectors[x + 1][y], color, Vector2((x + 1) * tw, (ty)*th));
-            vertices.emplace_back(vectors[x][y], vectors[x][y], color, Vector2(x * tw, (ty)*th));
+            vertices.emplace_back(vectors[x][y + 1], vectors[x][y + 1], Vector2(x * tw, (ty - 1) * th));
+            vertices.emplace_back(vectors[x + 1][y + 1], vectors[x + 1][y + 1], Vector2((x + 1) * tw, (ty - 1) * th));
+            vertices.emplace_back(vectors[x + 1][y], vectors[x + 1][y], Vector2((x + 1) * tw, (ty)*th));
+            vertices.emplace_back(vectors[x][y], vectors[x][y], Vector2(x * tw, (ty)*th));
         }
     }
 }

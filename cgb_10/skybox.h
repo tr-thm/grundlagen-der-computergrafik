@@ -24,5 +24,5 @@
 class Skybox : public Mesh
 {
   public:
-    Skybox(const Color &color, std::shared_ptr<Texture> &texture);
+    Skybox(std::shared_ptr<Texture> &texture);
 };
