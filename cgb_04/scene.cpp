@@ -27,7 +27,7 @@ Scene::~Scene()
 {
 }
 
-void Scene::render(GLFWwindow *window, const Camera &camera) const
+void Scene::render(GLFWwindow *window, const Camera &camera)
 {
     int width, height;
     glfwGetFramebufferSize(window, &width, &height);

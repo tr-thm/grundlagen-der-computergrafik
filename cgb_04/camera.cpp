@@ -25,10 +25,6 @@
 
 #include <GLFW/glfw3.h>
 
-Camera::Camera()
-{
-}
-
 Camera::Camera(double pitch, double yaw, double cameraDistance)
     : pitch(pitch), yaw(yaw), cameraDistance(cameraDistance)
 {

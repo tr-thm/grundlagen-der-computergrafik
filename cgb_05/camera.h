@@ -22,7 +22,6 @@
 class Camera
 {
   public:
-    Camera();
     Camera(double pitch, double yaw, double cameraDistance);
     ~Camera();
     void changePosition(double x, double y);

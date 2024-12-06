@@ -19,6 +19,8 @@
 
 #include "renderer.h"
 
+#include "scene.h"
+
 #include <iostream>
 
 Renderer::Renderer(const std::string &title, uint32_t width, uint32_t height)
@@ -82,11 +84,11 @@ Renderer::~Renderer()
 
 void Renderer::start()
 {
-    Scene squareScene;
+    Scene foreground;
 
     while (!glfwWindowShouldClose(window))
     {
-        renderScene(squareScene);
+        foreground.render(window, activeCamera);
         glfwSwapBuffers(window);
         glfwPollEvents();
         printFps();
@@ -110,11 +112,6 @@ void Renderer::onKeyboardInput(GLFWwindow *window, int key, int scancode, int ac
             glfwMaximizeWindow(window);
         }
     }
-}
-
-void Renderer::renderScene(const Scene &scene) const
-{
-    scene.render(window, activeCamera);
 }
 
 void Renderer::printFps()

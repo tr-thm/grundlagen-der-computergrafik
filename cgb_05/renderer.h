@@ -22,7 +22,6 @@
 #define GLFW_INCLUDE_GLEXT
 
 #include "camera.h"
-#include "scene.h"
 
 #include <GLFW/glfw3.h>
 #include <string>
@@ -44,6 +43,5 @@ class Renderer
     uint32_t frameCount = 0;
     uint32_t fps = 0;
 
-    void renderScene(Scene &scene) const;
     void setViewportSize();
 };

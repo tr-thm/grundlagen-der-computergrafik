@@ -21,8 +21,6 @@
 
 #define GLFW_INCLUDE_GLEXT
 
-#include "scene.h"
-
 #include <GLFW/glfw3.h>
 #include <string>
 
@@ -40,6 +38,4 @@ class Renderer
     double previousTime = 0.0;
     uint32_t frameCount = 0;
     uint32_t fps = 0;
-
-    void renderScene(const Scene &scene) const;
 };

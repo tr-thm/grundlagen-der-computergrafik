@@ -23,14 +23,9 @@ Sphere::Sphere(const Color &color)
 {
     const int segments = 64;
     const int rings = segments / 2;
-    int vcount = segments * rings * 4;
+    const int vcount = segments * rings * 4;
 
-    std::vector<std::vector<Vector3>> vectors;
-    vectors.resize(segments + 1);
-    std::vector<Vector3> fillVector;
-    fillVector.resize(rings + 1);
-    std::fill(fillVector.begin(), fillVector.end(), Vector3(0.0, 0.0, 0.0));
-    std::fill(vectors.begin(), vectors.end(), fillVector);
+    std::vector<std::vector<Vector3>> vectors(segments + 1, std::vector<Vector3>(rings + 1, Vector3(0.0, 0.0, 0.0)));
 
     for (int y = 0; y <= rings; y++)
     {

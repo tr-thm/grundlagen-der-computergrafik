@@ -56,7 +56,7 @@ struct Matrix4
 
     /**
      * Creates a rotation matrix for a rotation around the X-axis.
-     * 
+     *
      * @param a The angle of rotation in radians.
      * @return The rotation matrix.
      */
@@ -73,7 +73,7 @@ struct Matrix4
 
     /**
      * Creates a rotation matrix for a rotation around the Y-axis.
-     * 
+     *
      * @param a The angle of rotation in radians.
      * @return The rotation matrix.
      */
@@ -90,7 +90,7 @@ struct Matrix4
 
     /**
      * Creates a rotation matrix for a rotation around the Z-axis.
-     * 
+     *
      * @param a The angle of rotation in radians.
      * @return The rotation matrix.
      */
@@ -107,7 +107,7 @@ struct Matrix4
 
     /**
      * Converts the matrix to column-major order and stores the result in the provided array.
-     * 
+     *
      * @param values A reference to a 16-element array of floats where the column-major matrix elements will be stored.
      */
     void toColumnMajor(float (&values)[16]) const

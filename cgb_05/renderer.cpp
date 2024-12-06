@@ -20,6 +20,7 @@
 #include "renderer.h"
 
 #include "cube.h"
+#include "scene.h"
 #include "sphere.h"
 
 #include <iostream>
@@ -99,17 +100,19 @@ void Renderer::start()
 
     auto sphere = std::make_shared<Sphere>(Color(0.61f, 0.07f, 0.18f, 1.0f));
 
-    Scene scene;
-    scene.addMesh(cube1);
-    scene.addMesh(cube2);
-    scene.addMesh(sphere);
+    Scene foreground;
+    foreground.addMesh(cube1);
+    foreground.addMesh(cube2);
+    foreground.addMesh(sphere);
 
     setViewportSize();
     glClearColor(0.29f, 0.36f, 0.4f, 1.0f);
 
     while (!glfwWindowShouldClose(window))
     {
-        renderScene(scene);
+        glClear(GL_COLOR_BUFFER_BIT);
+        activeCamera.loadViewMatrix();
+        foreground.render();
         glfwSwapBuffers(window);
         glfwPollEvents();
         printFps();
@@ -138,15 +141,6 @@ void Renderer::onKeyboardInput(GLFWwindow *window, int key, int scancode, int ac
             glfwMaximizeWindow(window);
         }
     }
-}
-
-void Renderer::renderScene(Scene &scene) const
-{
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    activeCamera.loadViewMatrix();
-
-    scene.render();
 }
 
 void Renderer::printFps()

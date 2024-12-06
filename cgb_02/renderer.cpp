@@ -42,10 +42,10 @@ Renderer::Renderer(const std::string &title, uint32_t width, uint32_t height)
 
     glfwMakeContextCurrent(window);
     glfwSetWindowUserPointer(window, this);
-    glfwSetKeyCallback(window, [](GLFWwindow *w, int key, int scancode, int action, int mods)
+    glfwSetKeyCallback(window, [](GLFWwindow *window, int key, int scancode, int action, int mods)
     {
-        auto renderer = static_cast<Renderer *>(glfwGetWindowUserPointer(w));
-        renderer->onKeyboardInput(w, key, scancode, action, mods);
+        Renderer *self = static_cast<Renderer *>(glfwGetWindowUserPointer(window));
+        self->onKeyboardInput(window, key, scancode, action, mods);
     });
 }
 

@@ -35,7 +35,7 @@ void Scene::addMesh(const std::shared_ptr<Mesh> &mesh)
 
 void Scene::render()
 {
-    for (std::shared_ptr<Mesh> &mesh : meshes)
+    for (const std::shared_ptr<Mesh> &mesh : meshes)
     {
         mesh->render();
     }

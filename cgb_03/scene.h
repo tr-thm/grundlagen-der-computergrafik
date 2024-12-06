@@ -28,5 +28,5 @@ class Scene
   public:
     Scene();
     ~Scene();
-    void render(GLFWwindow *window) const;
+    void render(GLFWwindow *window);
 };

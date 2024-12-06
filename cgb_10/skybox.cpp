@@ -22,7 +22,7 @@
 Skybox::Skybox(const Color &color, std::shared_ptr<Texture> &texture)
     : Mesh(texture)
 {
-    
+    vertices.reserve(24);
 
     // +y
     vertices.push_back(Vertex({1, 1, -1}, {0, -1, 0}, color, {2 / 3.f, 1 / 2.f}));
