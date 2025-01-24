@@ -107,8 +107,8 @@ Renderer::~Renderer()
 
 void Renderer::start()
 {
-    auto thmTexture = std::make_shared<Texture>("res/thm2k.png");
-    auto earthTexture = std::make_shared<Texture>("res/earth_diffuse.jpg");
+    auto thmTexture = std::make_shared<Texture>("textures/thm2k.png");
+    auto earthTexture = std::make_shared<Texture>("textures/earth_diffuse.jpg");
 
     auto cube1 = std::make_shared<Cube>(thmTexture);
     cube1->setPosition(Vector3(3.0, 0.0, 0.0));

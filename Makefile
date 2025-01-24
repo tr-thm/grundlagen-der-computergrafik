@@ -1,20 +1,23 @@
 UNAME = $(shell uname -s)
 ifeq ($(findstring NT,$(UNAME)),NT)
-    # Windows
+#   Windows
 	CXX = clang++
-	LNK = -l stdc++ -l glfw3 -l gdi32 -l opengl32
+	INC = -I libraries/glfw-3.4/include -I libraries/stb
+	LIB = -L libraries/glfw-3.4/bin/win-lib-mingw-w64
+	LNK = -stdlib=libc++ -static-libstdc++ -l glfw3 -l gdi32 -l opengl32
 	OPT = -std=c++20
 else ifeq ($(findstring Darwin,$(UNAME)),Darwin)
-	# macOS
+#   macOS
 	CXX = clang++
-	INC = -I libraries/glfw-3.4.bin.MACOS/include
-	LIB = -L libraries/glfw-3.4.bin.MACOS/lib-universal
+	INC = -I libraries/glfw-3.4/include -I libraries/stb
+	LIB = -L libraries/glfw-3.4/bin/mac-lib-universal
 	LNK = -l glfw3 -framework Cocoa -framework OpenGL -framework IOKit
 	OPT = -std=c++20 -arch arm64 -arch x86_64 -Wno-deprecated-declarations
 else ifeq ($(findstring Linux,$(UNAME)),Linux)
-	# Linux
+#   Linux
 	CXX = clang++
-	LNK = -lglfw -lrt -lm -ldl -lGL
+	INC = -I libraries/glfw-3.4/include -I libraries/stb
+	LNK = -l glfw -l rt -l m -l dl -l GL
 	OPT = -std=c++20
 endif
 
@@ -36,7 +39,7 @@ $(SRC_DIRS): %: bin/%
 # Rule to run the binary
 run_%: %
 	@echo Running $< ...
-	@cd $< && ../bin/$<
+	@bin/$<
 
 # Rule to link the binary
 bin/%:

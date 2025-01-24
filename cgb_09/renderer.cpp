@@ -111,10 +111,10 @@ Renderer::~Renderer()
 
 void Renderer::start()
 {
-    auto starTexture = std::make_shared<Texture>("res/cubemap8k.jpg");
+    auto starTexture = std::make_shared<Texture>("textures/cubemap8k.jpg");
     auto noTexture = std::shared_ptr<Texture>{};
-    auto earthTexture = std::make_shared<Texture>("res/earth_diffuse.jpg");
-    auto satelliteTexture = std::make_shared<Texture>("res/thm2k.png");
+    auto earthTexture = std::make_shared<Texture>("textures/earth_diffuse.jpg");
+    auto satelliteTexture = std::make_shared<Texture>("textures/thm2k.png");
 
     auto stars = std::make_shared<Skybox>(starTexture);
     auto sun = std::make_shared<Sphere>(noTexture);

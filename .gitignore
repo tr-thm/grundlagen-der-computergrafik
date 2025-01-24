@@ -1,8 +1,8 @@
 .DS_Store
 Thumbs.db
 .vscode/settings.json
-bin/
-obj/
-cgb_*/bin
-cgb_*/obj
+/bin/
+/obj/
+/cgb_*/bin
+/cgb_*/obj
 *.zip

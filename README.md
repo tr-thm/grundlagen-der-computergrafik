@@ -19,9 +19,7 @@ Die einzelnen Tasks zum bauen der Kapitel und auch zum Aufräumen sind über das
 Über die Kommandozeile lassen sich die einzelnen Kapitel wie folgt bauen, starten und aufräumen:
 
 ```
-$ make cgb_01
-
-$ bin/cgb_01
+$ make run_cgb_01
 
 $ make clean
 ```
