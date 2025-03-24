@@ -183,5 +183,5 @@ void Renderer::setViewportSize()
     int width, height;
     glfwGetFramebufferSize(window, &width, &height);
     glViewport(0, 0, width, height);
-    activeCamera.loadProjectionMatrix(width / static_cast<float>(height));
+    activeCamera.loadProjectionMatrix(width / static_cast<double>(height));
 }

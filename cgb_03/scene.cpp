@@ -31,7 +31,7 @@ void Scene::render(GLFWwindow *window)
 {
     int width, height;
     glfwGetFramebufferSize(window, &width, &height);
-    float ratio = width / static_cast<float>(height);
+    double ratio = width / static_cast<double>(height);
     glViewport(0, 0, width, height);
 
     glClearColor(0.29f, 0.36f, 0.4f, 1.0f);
@@ -39,7 +39,7 @@ void Scene::render(GLFWwindow *window)
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-ratio, ratio, -1.0f, 1.0f, 1.0f, -1.0f);
+    glOrtho(-ratio, ratio, -1.0, 1.0, 1.0, -1.0);
 
     glBegin(GL_QUADS);
     glColor3f(0.5f, 0.73f, 0.14f);

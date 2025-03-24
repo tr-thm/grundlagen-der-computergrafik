@@ -36,7 +36,7 @@ void Scene::render(GLFWwindow *window, const Camera &camera)
     glClearColor(0.29f, 0.36f, 0.4f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    camera.loadProjectionMatrix(width / static_cast<float>(height));
+    camera.loadProjectionMatrix(width / static_cast<double>(height));
     camera.loadViewMatrix();
 
     glBegin(GL_QUADS);
